@@ -2,10 +2,12 @@ import Layout from "@components/layout";
 import axios from "axios";
 import UserList from "@components/user/user-list";
 import { getSession } from "next-auth/react";
+import Seo from "@components/common/seo";
 
 export default function HomePage({ users }) {
   return (
     <>
+      <Seo title="Dashboard" description="Admin Dashboard" canonical="/" />
       <UserList data={users} />
     </>
   );

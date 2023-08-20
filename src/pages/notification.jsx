@@ -19,7 +19,7 @@ export default function NotificationPage() {
   async function onSubmit({ title, message }) {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_NODE_API_SERVER}/message/post-message`,
+        `${process.env.NEXT_PUBLIC_NODE_API_SERVER}/coin/post-message`,
         {
           headers: {
             "Content-Type": "application/json",

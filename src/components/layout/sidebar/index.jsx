@@ -49,6 +49,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
       href: "/notification",
       icon: <PhoneIcon height={24} width={24} />,
     },
+    {
+      title: "Reward Calculation",
+      href: "/calculation",
+      icon: <PhoneIcon height={24} width={24} />,
+    },
   ];
 
   return (

@@ -2,10 +2,12 @@ import Layout from "@components/layout";
 import axios from "axios";
 import GiftList from "@components/gift/gift-list";
 import { getSession } from "next-auth/react";
+import Seo from "@components/common/seo";
 
 export default function GiftPage({ giftList }) {
   return (
     <>
+      <Seo title="Gifts" description="Admin Dashboard" canonical="/gifts" />
       <GiftList data={giftList} />
     </>
   );

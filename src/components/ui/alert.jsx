@@ -5,7 +5,7 @@ const variantClasses = {
   info: "bg-blue-100 text-blue-600",
   warning: "bg-yellow-100 text-yellow-600",
   error: "bg-red-100 text-red-500",
-  success: "bg-green-100 text-accent",
+  success: "bg-green-600 text-white",
   infoOutline: "border border-blue-200 text-blue-600",
   warningOutline: "border border-yellow-200 text-yellow-600",
   errorOutline: "border border-red-200 text-red-600",
