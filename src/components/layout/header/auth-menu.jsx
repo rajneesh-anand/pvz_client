@@ -9,10 +9,8 @@ const AuthMenu = ({ btnProps }) => {
     <Menu as="div" className="relative hidden lg:inline-flex ml-auto">
       <Menu.Button className="inline-flex justify-center items-center group">
         <img
-          className="rounded-full"
+          className="rounded-full w-8 h-8"
           src={session?.user?.image ?? "/images/placeholder/avatar.svg"}
-          width="28"
-          height="28"
           alt={session?.user?.name}
         />
         {/* <div className="flex items-center truncate">

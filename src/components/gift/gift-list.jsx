@@ -67,7 +67,7 @@ const GiftList = ({ data }) => {
 
                       <td className="px-3 py-4 whitespace-no-wrap border-b border-gray-200">
                         <div className="flex items-center">
-                          <div className="text-md font-bold leading-5 text-indigo-900">
+                          <div className="text-md font-bold leading-5 text-indigo-900 uppercase">
                             {item.redeemCode}
                           </div>
                         </div>
