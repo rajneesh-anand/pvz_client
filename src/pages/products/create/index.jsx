@@ -1,7 +1,11 @@
 import Layout from "@components/layout";
-import AddProductForm from "@components/product/create-product";
 import { getSession } from "next-auth/react";
 import Seo from "@components/common/seo";
+import dynamic from "next/dynamic";
+
+const AddProductForm = dynamic(() =>
+  import("@components/product/create-product")
+);
 
 export default function ProductCreatePage() {
   return (

@@ -1,7 +1,11 @@
 import Layout from "@components/layout";
 import axios from "axios";
-import EditProductForm from "@components/product/edit-product";
 import Seo from "@components/common/seo";
+import dynamic from "next/dynamic";
+
+const EditProductForm = dynamic(() =>
+  import("@components/product/edit-product")
+);
 
 export default function ProductEditPage({ product }) {
   return (
