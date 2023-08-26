@@ -99,8 +99,8 @@ const UserList = ({ data }) => {
                           <div
                             className={
                               item.userStatus === "Active"
-                                ? "text-sm font-medium leading-5 text-green-600"
-                                : "text-sm font-medium leading-5 text-red-600"
+                                ? "rounded-full text-sm font-semibold leading-5 py-[2px] px-4 bg-green-700 text-white"
+                                : "rounded-full text-sm font-semibold leading-5 py-[2px] px-4 bg-rose-700 text-white"
                             }
                           >
                             {item.userStatus}

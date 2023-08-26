@@ -4,5 +4,16 @@ export const statusOptions = [
   { value: "Received", label: "Received" },
 ];
 
+export const productStatusOptions = [
+  {
+    label: "Active",
+    value: "Active",
+  },
+  {
+    label: "Disable",
+    value: "Disable",
+  },
+];
+
 export const ACCEPTED_FILE_TYPES =
   "image/*,application/pdf,application/zip,application/vnd.rar,application/epub+zip,.psd";
