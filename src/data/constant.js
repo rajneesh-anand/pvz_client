@@ -15,5 +15,24 @@ export const productStatusOptions = [
   },
 ];
 
+export const productCategoryOptions = [
+  {
+    label: "All",
+    value: "All",
+  },
+  {
+    label: "Toys",
+    value: "Toys",
+  },
+  {
+    label: "Beauty & Fashion",
+    value: "Beauty & Fashion",
+  },
+  {
+    label: "Electronics & Electrical",
+    value: "Electronics & Electrical",
+  },
+];
+
 export const ACCEPTED_FILE_TYPES =
   "image/*,application/pdf,application/zip,application/vnd.rar,application/epub+zip,.psd";

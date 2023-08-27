@@ -7,13 +7,14 @@ import Alert from "@components/ui/alert";
 import Input from "@components/ui/form/input";
 import Select from "@components/ui/form/select/select";
 import { useForm } from "react-hook-form";
-import { productStatusOptions } from "@data/constant";
+import { productStatusOptions, productCategoryOptions } from "@data/constant";
 
 export default function EditProductForm({ data }) {
   const [error, setError] = useState(null);
   const [message, setMessage] = useState("");
   const [productImage, setProductImage] = useState(null);
   const [status, setStatus] = useState(JSON.parse(data.status));
+  const [category, setCategory] = useState(JSON.parse(data.category));
 
   const {
     register,
@@ -44,6 +45,7 @@ export default function EditProductForm({ data }) {
         })
       );
       formData.append("status", JSON.stringify(status));
+      formData.append("category", JSON.stringify(category));
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_NODE_API_SERVER}/product/edit/${data.id}`,
         {
@@ -173,6 +175,19 @@ export default function EditProductForm({ data }) {
               },
             })}
             error={errors.stock?.message}
+          />
+        </div>
+
+        <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2 sm:w-4/12  md:w-1/3">
+            Product Category
+          </p>
+          <Select
+            className="md:w-2/3"
+            defaultValue={category}
+            options={productCategoryOptions}
+            isSearchable={false}
+            onChange={(value) => setCategory(value)}
           />
         </div>
 
