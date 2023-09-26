@@ -7,7 +7,7 @@ import { useUI } from "@contexts/ui.context";
 import cn from "classnames";
 import CloseIcon from "@assets/icons/close-icon";
 import { useSession, signOut } from "next-auth/react";
-import { useModalAction } from "@components/common/modal/modal.context";
+import { useModalAction } from "@components/modal/modal.context";
 
 // const social = [
 //   {

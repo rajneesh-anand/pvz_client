@@ -1,5 +1,5 @@
 import React from "react";
-import { ModalProvider } from "@components/common/modal/modal.context";
+import { ModalProvider } from "@components/modal/modal.context";
 
 const initialState = {
   displaySidebar: false,

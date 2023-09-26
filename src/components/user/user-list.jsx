@@ -1,4 +1,7 @@
 import dayjs from "dayjs";
+import React, { useState } from "react";
+import { useModalAction } from "@components/modal/modal.context";
+import NotificationButton from "@components/ui/icon-button/notification-button";
 
 function maskMobileNumber(number) {
   return (
@@ -12,6 +15,12 @@ function maskMobileNumber(number) {
   );
 }
 const UserList = ({ data }) => {
+  const { openModal } = useModalAction();
+
+  function handleMessageForm(mobile) {
+    openModal("MESSAGE_VIEW", mobile);
+  }
+
   return (
     <>
       <div className="flex flex-col">
@@ -37,6 +46,9 @@ const UserList = ({ data }) => {
                   </th>
                   <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left text-blue-600 uppercase border-b border-gray-200 bg-gray-50">
                     Status
+                  </th>
+                  <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left text-blue-600 uppercase border-b border-gray-200 bg-gray-50">
+                    Action
                   </th>
                 </tr>
               </thead>
@@ -105,6 +117,14 @@ const UserList = ({ data }) => {
                           >
                             {item.userStatus}
                           </div>
+                        </div>
+                      </td>
+                      <td className="px-3 py-4 whitespace-no-wrap border-b border-gray-200">
+                        <div className="flex items-center">
+                          <NotificationButton
+                            onClick={() => handleMessageForm(item.mobile)}
+                            color="#000000"
+                          />
                         </div>
                       </td>
                     </tr>

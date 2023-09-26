@@ -5,7 +5,7 @@ import "@assets/css/custom.css";
 import { SessionProvider } from "next-auth/react";
 import { useRouter } from "next/router";
 import { ManagedUIContext } from "@contexts/ui.context";
-import ManagedModal from "@components/common/modal/managed-modal";
+import ManagedModal from "@components/modal/managed-modal";
 import ManagedDrawer from "@components/common/drawer/managed-drawer";
 import React, { useEffect, useRef } from "react";
 import { QueryClient, QueryClientProvider, Hydrate } from "react-query";

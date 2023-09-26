@@ -3,7 +3,7 @@ import useSticky from "@utils/use-sticky";
 import React, { useState } from "react";
 import NavMenu from "./nav-menu";
 import { siteSettings } from "@settings/site-settings";
-import { useModalAction } from "@components/common/modal/modal.context";
+import { useModalAction } from "@components/modal/modal.context";
 import { useUI } from "@contexts/ui.context";
 import Container from "@components/ui/container";
 import Logo from "@components/ui/logo";
@@ -32,7 +32,9 @@ const Header = () => {
     <>
       <header
         className={`${
-          sticky ? "header-sticky" : "py-[8px] border-b border-[#f0f0fe]"
+          sticky
+            ? "header-sticky"
+            : "relative py-[8px] border-b border-[#f0f0fe]"
         }`}
       >
         <Container className="flex items-center">
