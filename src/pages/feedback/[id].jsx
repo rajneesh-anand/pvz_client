@@ -1,8 +1,13 @@
 import Layout from "@components/layout";
 import axios from "axios";
-import FeedbackDetail from "@components/feedback/feedback-detail";
+import dynamic from "next/dynamic";
 import Seo from "@components/common/seo";
 import { getSession } from "next-auth/react";
+
+const FeedbackDetail = dynamic(
+  () => import("@components/feedback/feedback-detail"),
+  { ssr: false }
+);
 
 export default function FeedbackDetailPage({ feedback }) {
   return (
