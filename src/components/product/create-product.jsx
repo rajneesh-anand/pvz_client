@@ -63,7 +63,7 @@ export default function AddProductForm() {
 
   return (
     <>
-      <div className="my-2 flex flex-col md:flex-row justify-between ">
+      <div className="pt-4 pb-[32px] flex flex-col md:flex-row justify-between ">
         <Description
           title="Product Image"
           details="Upload the image of the product"
@@ -106,13 +106,13 @@ export default function AddProductForm() {
       </div>
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2 sm:w-4/12  md:w-1/3">
+          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2  md:w-1/3">
             Product Name
           </p>
           <Input
             type="text"
             variant="outline"
-            className="md:w-2/3"
+            className="w-full md:w-2/3"
             placeholder="Product Name"
             {...register("name", {
               required: "product name is required !",
@@ -121,13 +121,13 @@ export default function AddProductForm() {
           />
         </div>
         <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2 sm:w-4/12  md:w-1/3">
+          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2  md:w-1/3">
             Product Description
           </p>
           <Input
             type="text"
             variant="outline"
-            className="md:w-2/3"
+            className="w-full md:w-2/3"
             placeholder="Product Description"
             {...register("description", {
               required: "product description is required !",
@@ -137,13 +137,13 @@ export default function AddProductForm() {
         </div>
 
         <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2 sm:w-4/12  md:w-1/3">
+          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2 md:w-1/3">
             Product Coin Value
           </p>
           <Input
             type="text"
             variant="outline"
-            className="md:w-2/3"
+            className="w-full md:w-2/3"
             placeholder="Product Coin Value"
             {...register("coinvalue", {
               required: "product coin value is required !",
@@ -156,13 +156,13 @@ export default function AddProductForm() {
           />
         </div>
         <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2 sm:w-4/12  md:w-1/3">
+          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2 md:w-1/3">
             Quantity In Stock
           </p>
           <Input
             type="text"
             variant="outline"
-            className="md:w-2/3"
+            className="w-full md:w-2/3"
             placeholder="Product Stock Quantity"
             {...register("stock", {
               required: "stock value is required !",
@@ -175,11 +175,11 @@ export default function AddProductForm() {
           />
         </div>
         <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2 sm:w-4/12  md:w-1/3">
+          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2 md:w-1/3">
             Product Category
           </p>
           <Select
-            className="md:w-2/3"
+            className=" w-full md:w-2/3"
             defaultValue={category}
             options={productCategoryOptions}
             isSearchable={false}
@@ -187,11 +187,11 @@ export default function AddProductForm() {
           />
         </div>
         <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2 sm:w-4/12  md:w-1/3">
+          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2 md:w-1/3">
             Product Status
           </p>
           <Select
-            className="md:w-2/3"
+            className=" w-full md:w-2/3"
             defaultValue={status}
             options={productStatusOptions}
             isSearchable={false}

@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "@components/ui/link";
-import PhoneIcon from "@assets/icons/phone";
 import { useRouter } from "next/router";
+import { sidebarNavItems } from "@data/constant";
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const { pathname } = useRouter();
   const trigger = useRef(null);
   const sidebar = useRef(null);
   const [sidebarExpanded, setSidebarExpanded] = useState(true);
-  console.log(pathname);
+
   useEffect(() => {
     const clickHandler = (ev) => {
       if (!sidebar.current || !trigger.current) return;
@@ -33,39 +33,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
     }
   }, [sidebarExpanded]);
 
-  const sidebarNavItems = [
-    {
-      title: "Users",
-      href: "/",
-      icon: <PhoneIcon height={24} width={24} />,
-    },
-    {
-      title: "Gifts",
-      href: "/gifts",
-      icon: <PhoneIcon height={24} width={24} />,
-    },
-    {
-      title: "Push Notification",
-      href: "/notification",
-      icon: <PhoneIcon height={24} width={24} />,
-    },
-    {
-      title: "Reward Calculation",
-      href: "/calculation",
-      icon: <PhoneIcon height={24} width={24} />,
-    },
-    {
-      title: "Products",
-      href: "/products",
-      icon: <PhoneIcon height={24} width={24} />,
-    },
-  ];
-
   return (
     <div
       id="sidebar"
       ref={sidebar}
-      className={`flex flex-col absolute  bg-slate-900 z-40 left-0 top-0 lg:static lg:left-auto lg:top-auto lg:translate-x-0 transform h-screen overflow-y-scroll lg:overflow-y-auto no-scrollbar w-60 lg:w-20 lg:sidebar-expanded:!w-60 2xl:!w-60 shrink-0 p-4 transition-all duration-200 ease-in-out ${
+      className={`hidden lg:flex lg:flex-col absolute  bg-slate-900 z-40 lg:left-0 lg:top-0 lg:static lg:left-auto lg:top-auto lg:translate-x-0 transform h-screen overflow-y-scroll lg:overflow-y-auto no-scrollbar w-60 lg:w-20 lg:sidebar-expanded:!w-60 2xl:!w-60 shrink-0 p-4 transition-all duration-200 ease-in-out ${
         sidebarOpen ? "translate-x-0" : "-translate-x-60"
       }`}
     >

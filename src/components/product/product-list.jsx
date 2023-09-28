@@ -1,4 +1,5 @@
 import Link from "@components/ui/link";
+import EditIcon from "@assets/icons/edit-icon";
 
 const ProductList = ({ data }) => {
   return (
@@ -92,11 +93,11 @@ const ProductList = ({ data }) => {
 
                         <td className="px-3 py-4 whitespace-no-wrap border-b border-gray-200">
                           <div className="flex items-center">
-                            <Link
-                              href={`/products/edit/${item.id}`}
-                              className="px-8 py-1.5 bg-yellow text-white hover:bg-orange"
-                            >
-                              Edit
+                            <Link href={`/products/edit/${item.id}`}>
+                              <EditIcon
+                                className="text-xl lg:text-2xl"
+                                color="#000000"
+                              />
                             </Link>
                           </div>
                         </td>

@@ -70,7 +70,6 @@ model Product {
    createdAt      DateTime  @default(now())  
 }
 
-
 model Redeem {
    id            Int   @id @default(autoincrement())
    name           String
@@ -115,4 +114,19 @@ model User {
   accounts      Account[]
   sessions      Session[]
   verificationTokens    VerificationToken[]
+  feedbacks    Feedback[]
+}
+
+
+model Feedback {
+   id            Int   @id @default(autoincrement())
+   name          String
+   mobile        String
+   email         String?
+   message       String
+   category      String
+   messagePhoto  String?
+   status        String @default("Created") 
+   createdAt     DateTime  @default(now()) 
+   photo         User @relation(fields: [mobile], references: [mobile])
 }

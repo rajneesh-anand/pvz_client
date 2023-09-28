@@ -1,3 +1,37 @@
+import PhoneIcon from "@assets/icons/phone";
+export const sidebarNavItems = [
+  {
+    title: "Users",
+    href: "/",
+    icon: <PhoneIcon height={24} width={24} />,
+  },
+  {
+    title: "Gifts",
+    href: "/gifts",
+    icon: <PhoneIcon height={24} width={24} />,
+  },
+  {
+    title: "Push Notification",
+    href: "/notification",
+    icon: <PhoneIcon height={24} width={24} />,
+  },
+  {
+    title: "Reward Calculation",
+    href: "/calculation",
+    icon: <PhoneIcon height={24} width={24} />,
+  },
+  {
+    title: "Products",
+    href: "/products",
+    icon: <PhoneIcon height={24} width={24} />,
+  },
+  {
+    title: "Feedbacks",
+    href: "/feedbacks",
+    icon: <PhoneIcon height={24} width={24} />,
+  },
+];
+
 export const statusOptions = [
   { value: "Created", label: "Created" },
   { value: "Ready", label: "Ready" },

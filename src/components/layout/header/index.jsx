@@ -1,9 +1,6 @@
 import dynamic from "next/dynamic";
 import useSticky from "@utils/use-sticky";
 import React, { useState } from "react";
-import NavMenu from "./nav-menu";
-import { siteSettings } from "@settings/site-settings";
-import { useModalAction } from "@components/modal/modal.context";
 import { useUI } from "@contexts/ui.context";
 import Container from "@components/ui/container";
 import Logo from "@components/ui/logo";
@@ -13,19 +10,12 @@ const AuthMenu = dynamic(() => import("./auth-menu"), { ssr: false });
 const MobileMenu = dynamic(() => import("./mobile-menu"), { ssr: false });
 
 const Header = () => {
-  const { site_header } = siteSettings;
   const { sticky } = useSticky();
-  const { openModal } = useModalAction();
   const { openSidebar, closeSidebar, displaySidebar } = useUI();
-
   const contentWrapperCSS = { left: 0 };
 
   function handleMobileMenu() {
     return openSidebar();
-  }
-
-  function handleLogin() {
-    openModal("LOGIN_VIEW");
   }
 
   return (
@@ -34,23 +24,18 @@ const Header = () => {
         className={`${
           sticky
             ? "header-sticky"
-            : "relative py-[8px] border-b border-[#f0f0fe]"
+            : "relative py-[8px] border-b border-orange bg-[#f8f6f0]"
         }`}
       >
         <Container className="flex items-center">
           <Logo />
 
-          {/* <NavMenu data={site_header.menu} /> */}
-          <AuthMenu
-            btnProps={{
-              onClick: handleLogin,
-            }}
-          />
+          <AuthMenu />
           <button
             onClick={handleMobileMenu}
             className="btn-orange lg:hidden block ml-auto"
           >
-            <i className="fi fi-rr-menu-burger"></i>
+            <i className="icon_menu"></i>
           </button>
         </Container>
       </header>
