@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import slugify from "slugify";
 import UploadIcon from "@assets/icons/upload-icon";
 import Dropzone from "react-dropzone";
-import Description from "@components/ui/description";
 import Alert from "@components/ui/alert";
 import Input from "@components/ui/form/input";
 import Select from "@components/ui/form/select/select";
@@ -69,52 +68,67 @@ export default function EditProductForm({ data }) {
 
   return (
     <>
-      <div className="my-2 flex flex-col md:flex-row justify-between ">
-        <Description
-          title="Product Image"
-          details="Upload the image of the product"
-          className="sm:pr-4 md:pr-5 w-full px-0 pb-5 sm:w-4/12 sm:py-8 md:w-1/3"
+      {error && (
+        <Alert
+          message={error}
+          variant={message}
+          closeable={true}
+          className="mt-5"
+          onClose={() => setError(null)}
         />
+      )}
 
-        <Dropzone onDrop={(acceptedFiles) => setProductImage(acceptedFiles[0])}>
-          {({ getRootProps, getInputProps }) => (
-            <section>
-              <div
-                {...getRootProps({
-                  className:
-                    "w-full border-dashed border-2 border-border-base h-36 px-4 rounded flex flex-col justify-center items-center cursor-pointer focus:border-accent-400 focus:outline-none",
-                })}
-              >
-                <input {...getInputProps()} />
-                <UploadIcon className="text-slate-400" color="#7f7777" />
-                <p className="mt-4 text-center text-sm ">
-                  <span className="font-semibold text-blue-700">
-                    Click here to upload product image
-                  </span>{" "}
-                  or Drag and Drop here <br /> <span>( PNG / JPG ) </span>
-                </p>
-              </div>
-            </section>
-          )}
-        </Dropzone>
-
-        <div className="text-center mt-1 ">
-          <img
-            className="inline object-fill h-28  rounded overflow-hidden"
-            src={productImage ? URL.createObjectURL(productImage) : data.image}
-            alt="product photo"
-          />
+      <div className="my-2 flex flex-col md:flex-row justify-between items-center">
+        <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2  md:w-1/3">
+          Product Image
+        </p>
+        <div className="flex w-full md:w-2/3 ">
+          <Dropzone
+            onDrop={(acceptedFiles) => setProductImage(acceptedFiles[0])}
+          >
+            {({ getRootProps, getInputProps }) => (
+              <section className="w-2/3">
+                <div
+                  {...getRootProps({
+                    className:
+                      "border-dashed border-2 border-border-base h-36 px-4 rounded flex flex-col justify-center items-center cursor-pointer focus:border-accent-400 focus:outline-none",
+                  })}
+                >
+                  <input {...getInputProps()} />
+                  <UploadIcon className="text-slate-400" color="#7f7777" />
+                  <p className="mt-4 font-semibold text-center text-[12px] lg:text-sm ">
+                    <span className=" text-blue-700">
+                      Click here to upload product image
+                    </span>{" "}
+                    <br />
+                    Or <br />
+                    Drag and Drop Image here
+                  </p>
+                </div>
+              </section>
+            )}
+          </Dropzone>
+          <div className="flex flex-col h-36 w-1/3">
+            <img
+              className="w-full object-contain min-h-0 rounded overflow-hidden "
+              src={
+                productImage ? URL.createObjectURL(productImage) : data.image
+              }
+              alt="product photo"
+            />
+          </div>
         </div>
       </div>
+
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2 sm:w-4/12  md:w-1/3">
+          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2  md:w-1/3">
             Product Name
           </p>
           <Input
             type="text"
             variant="outline"
-            className="md:w-2/3"
+            className="w-full md:w-2/3"
             placeholder="Product Name"
             {...register("name", {
               required: "product name is required !",
@@ -123,13 +137,13 @@ export default function EditProductForm({ data }) {
           />
         </div>
         <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2 sm:w-4/12  md:w-1/3">
+          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2 md:w-1/3">
             Product Description
           </p>
           <Input
             type="text"
             variant="outline"
-            className="md:w-2/3"
+            className="w-full md:w-2/3"
             placeholder="Product Description"
             {...register("description", {
               required: "product description is required !",
@@ -139,13 +153,13 @@ export default function EditProductForm({ data }) {
         </div>
 
         <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2 sm:w-4/12  md:w-1/3">
+          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2  md:w-1/3">
             Product Coin Value
           </p>
           <Input
             type="text"
             variant="outline"
-            className="md:w-2/3"
+            className="w-full md:w-2/3"
             placeholder="Product Coin Value"
             {...register("coinvalue", {
               required: "product coin value is required !",
@@ -159,13 +173,13 @@ export default function EditProductForm({ data }) {
         </div>
 
         <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2 sm:w-4/12  md:w-1/3">
+          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2  md:w-1/3">
             Quantity In Stock
           </p>
           <Input
             type="text"
             variant="outline"
-            className="md:w-2/3"
+            className="w-full md:w-2/3"
             placeholder="Product Stock Quantity"
             {...register("stock", {
               required: "stock value is required !",
@@ -179,11 +193,11 @@ export default function EditProductForm({ data }) {
         </div>
 
         <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2 sm:w-4/12  md:w-1/3">
+          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2  md:w-1/3">
             Product Category
           </p>
           <Select
-            className="md:w-2/3"
+            className="w-full md:w-2/3"
             defaultValue={category}
             options={productCategoryOptions}
             isSearchable={false}
@@ -192,11 +206,11 @@ export default function EditProductForm({ data }) {
         </div>
 
         <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2 sm:w-4/12  md:w-1/3">
+          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2   md:w-1/3">
             Product Status
           </p>
           <Select
-            className="md:w-2/3"
+            className="w-full md:w-2/3"
             defaultValue={status}
             options={productStatusOptions}
             isSearchable={false}
@@ -204,24 +218,14 @@ export default function EditProductForm({ data }) {
           />
         </div>
 
-        <div className="relative">
+        <div className="relative text-center lg:text-end">
           <button
             type="submit"
-            className="inline-flex items-center justify-center w-full  px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-orange/90 rounded-sm shadow-sm focus:outline-none hover:bg-opacity-90"
+            className="px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-orange/90 rounded-sm shadow-sm focus:outline-none hover:bg-opacity-90"
           >
             Update Product
           </button>
         </div>
-
-        {error && (
-          <Alert
-            message={error}
-            variant={message}
-            closeable={true}
-            className="mt-5"
-            onClose={() => setError(null)}
-          />
-        )}
       </form>
     </>
   );
