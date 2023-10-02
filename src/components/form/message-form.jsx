@@ -44,7 +44,7 @@ const MessageForm = ({ isPopup = true, className, mobile }) => {
 
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_NODE_API_SERVER}/coin/user/message`,
+        `${process.env.NEXT_PUBLIC_NODE_API_SERVER}/user/message`,
         {
           headers: {
             "Content-Type": "application/json",

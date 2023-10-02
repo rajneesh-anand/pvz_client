@@ -20,7 +20,7 @@ export default function NotificationPage() {
   async function onSubmit({ title, msgDescription }) {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_NODE_API_SERVER}/coin/post-message`,
+        `${process.env.NEXT_PUBLIC_NODE_API_SERVER}/message/topic`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -50,13 +50,13 @@ export default function NotificationPage() {
         description="Admin Dashboard"
         canonical="/gifts"
       />
-      <div className="mt-16">
+      <div className="mt-1">
         {error && (
           <Alert
             message={error}
             variant={message}
             closeable={true}
-            className="mt-5"
+            className="my-3"
             onClose={() => setError(null)}
           />
         )}
