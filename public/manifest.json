@@ -1,7 +1,7 @@
 {
   "name": "Яша",
   "short_name": "Яша",
-  "start_url": "/",
+  "start_url": "https://admin.yasha64.ru",
   "scope": "/",
   "display": "standalone",
   "background_color": "#f57c00",
