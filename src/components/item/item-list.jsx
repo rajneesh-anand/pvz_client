@@ -1,0 +1,145 @@
+import Link from "@components/ui/link";
+import EditIcon from "@assets/icons/edit-icon";
+
+const ItemList = ({ data }) => {
+  return (
+    <>
+      {data.length > 0 ? (
+        <div className="flex flex-col">
+          <div className="overflow-x-auto">
+            <div className="inline-block min-w-full overflow-hidden align-middle ">
+              {data.length > 0 && (
+                <table className="min-w-full">
+                  <thead>
+                    <tr className="border-b border-gray-200 bg-gray-50 text-blue-600 uppercase ">
+                      <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                        Image
+                      </th>
+                      <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                        Name
+                      </th>
+                      <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                        Market Place
+                      </th>
+                      <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                        Price
+                      </th>
+                      <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                        Sale Price
+                      </th>
+                      <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                        Discount
+                      </th>
+                      <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                        Status
+                      </th>
+
+                      <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                        Action
+                      </th>
+                    </tr>
+                  </thead>
+
+                  <tbody className="bg-white">
+                    {data.map((item, index) => {
+                      return (
+                        <tr key={index} className="border-b border-gray-200">
+                          <td className="px-3 py-4 whitespace-no-wrap ">
+                            <div className="flex items-center">
+                              <div className="text-sm font-medium leading-5 text-gray-900">
+                                <img
+                                  className="rounded-sm object-fill"
+                                  src={
+                                    item.image ??
+                                    "/images/placeholder/product.svg"
+                                  }
+                                  width={128}
+                                  height={128}
+                                  alt={item.name}
+                                />
+                              </div>
+                            </div>
+                          </td>
+
+                          <td className="px-3 py-4 whitespace-no-wrap ">
+                            <div className="flex items-center">
+                              <div className="text-sm font-medium leading-5 text-gray-900">
+                                {item.name}
+                              </div>
+                            </div>
+                          </td>
+                          <td className="px-3 py-4 whitespace-no-wrap ">
+                            <div className="flex items-center">
+                              <div className="text-sm font-medium leading-5 text-gray-900 ">
+                                {JSON.parse(item.marketPlace).value}
+                              </div>
+                            </div>
+                          </td>
+
+                          <td className="px-3 py-4 whitespace-no-wrap ">
+                            <div className="flex items-center">
+                              <div className="text-sm font-medium leading-5 text-gray-900 ">
+                                {item.price}
+                              </div>
+                            </div>
+                          </td>
+
+                          <td className="px-3 py-4 whitespace-no-wrap ">
+                            <div className="flex items-center">
+                              <div className="text-sm font-medium leading-5 text-gray-900">
+                                {item.salePrice}
+                              </div>
+                            </div>
+                          </td>
+                          <td className="px-3 py-4 whitespace-no-wrap ">
+                            <div className="flex items-center">
+                              <div className="text-sm font-medium leading-5 text-gray-900">
+                                {item.discount}
+                              </div>
+                            </div>
+                          </td>
+                          <td className="px-3 py-4 whitespace-no-wrap ">
+                            <div className="flex items-center">
+                              <div
+                                className={
+                                  JSON.parse(item.status).value === "Active"
+                                    ? "rounded-full text-sm font-semibold leading-5 py-[2px] px-4 bg-green-700 text-white"
+                                    : "rounded-full text-sm font-semibold leading-5 py-[2px] px-4 bg-rose-700 text-white"
+                                }
+                              >
+                                {JSON.parse(item.status).value}
+                              </div>
+                            </div>
+                          </td>
+
+                          <td className="px-3 py-4 whitespace-no-wrap ">
+                            <div className="flex items-center">
+                              <Link href={`/items/edit/${item.id}`}>
+                                <EditIcon
+                                  className="text-xl lg:text-2xl"
+                                  color="#000000"
+                                />
+                              </Link>
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              )}
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="flex justify-center items-center h-screen">
+          <p className="bg-rose-700 font-semibold  py-2 px-8 text-white">
+            No Products
+          </p>
+        </div>
+      )}
+    </>
+  );
+};
+
+export default ItemList;

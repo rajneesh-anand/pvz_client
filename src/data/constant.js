@@ -1,9 +1,10 @@
 import PhoneIcon from "@assets/icons/phone";
+import UserIcon from "@assets/icons/user-icon";
 export const sidebarNavItems = [
   {
     title: "Users",
     href: "/",
-    icon: <PhoneIcon height={24} width={24} />,
+    icon: <UserIcon color="#ffffff" height={24} width={24} />,
   },
   {
     title: "Gifts",
@@ -28,6 +29,16 @@ export const sidebarNavItems = [
   {
     title: "Feedbacks",
     href: "/feedbacks",
+    icon: <PhoneIcon height={24} width={24} />,
+  },
+  {
+    title: "Blogs",
+    href: "/blogs",
+    icon: <PhoneIcon height={24} width={24} />,
+  },
+  {
+    title: "Items",
+    href: "/items",
     icon: <PhoneIcon height={24} width={24} />,
   },
 ];
@@ -65,6 +76,51 @@ export const productCategoryOptions = [
   {
     label: "Electronics & Electrical",
     value: "Electronics & Electrical",
+  },
+];
+
+export const blogCategory = [
+  {
+    label: "All",
+    value: "All",
+  },
+  {
+    label: "Toys",
+    value: "Toys",
+  },
+  {
+    label: "Beauty & Fashion",
+    value: "Beauty & Fashion",
+  },
+  {
+    label: "Electronics & Electrical",
+    value: "Electronics & Electrical",
+  },
+];
+
+export const blogSubCategory = [
+  {
+    label: "Toys",
+    value: "Toys",
+  },
+  {
+    label: "Beauty & Fashion",
+    value: "Beauty & Fashion",
+  },
+  {
+    label: "Electronics & Electrical",
+    value: "Electronics & Electrical",
+  },
+];
+
+export const marketPlaceOptions = [
+  {
+    label: "Yandex Market",
+    value: "Yandex Market",
+  },
+  {
+    label: "Ozon",
+    value: "Ozon",
   },
 ];
 

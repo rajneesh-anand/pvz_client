@@ -53,6 +53,7 @@ export const selectStyles = {
     border: "1px solid #E5E7EB",
     boxShadow:
       "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
+    zIndex: 99,
   }),
   valueContainer: (provided, state) => ({
     ...provided,
@@ -77,13 +78,13 @@ export const selectStyles = {
     ...provided,
     paddingLeft: 10,
     fontSize: "0.875rem",
-    color: "#ffffff",
+    color: "#000000",
   }),
   multiValueRemove: (provided, _) => ({
     ...provided,
     paddingLeft: 0,
     paddingRight: 8,
-    color: "#ffffff",
+    color: "#000000",
     cursor: "pointer",
 
     "&:hover": {

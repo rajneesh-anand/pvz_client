@@ -29,7 +29,7 @@ const FeedbackList = ({ data }) => {
                     <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
                       Name
                     </th>
-                    <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                    <th className="w-[132px] px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
                       Mobile
                     </th>
                     <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
@@ -38,7 +38,7 @@ const FeedbackList = ({ data }) => {
                     <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
                       Date
                     </th>
-                    <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                    <th className="w-[148px] px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
                       Status
                     </th>
 
