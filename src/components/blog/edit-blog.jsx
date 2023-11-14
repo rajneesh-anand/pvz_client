@@ -10,20 +10,25 @@ import { useForm } from "react-hook-form";
 import { blogCategory, blogSubCategory } from "@data/constant";
 import { useSession } from "next-auth/react";
 
-export default function AddBlogForm() {
+export default function EditBlogForm({ blog }) {
   const { data: session, status } = useSession();
   const [editorLoaded, setEditorLoaded] = useState(false);
-  const [data, setData] = useState("");
+  const [data, setData] = useState(blog.content);
   const [error, setError] = useState(null);
   const [message, setMessage] = useState("");
   const [blogImage, setBlogImage] = useState(null);
-  const [subCategory, setSubCategory] = useState(blogSubCategory[0]);
-  const [category, setCategory] = useState(blogCategory[0]);
+  const [subCategory, setSubCategory] = useState(JSON.parse(blog.subCategory));
+  const [category, setCategory] = useState(JSON.parse(blog.category));
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      title: blog.title,
+      description: blog.description,
+    },
+  });
 
   useEffect(() => {
     setEditorLoaded(true);
@@ -49,18 +54,19 @@ export default function AddBlogForm() {
       formData.append("author", session?.user?.mobile);
 
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_NODE_API_SERVER}/blog/create`,
+        `${process.env.NEXT_PUBLIC_NODE_API_SERVER}/blog/edit/${blog.id}`,
         {
           method: "POST",
           body: formData,
         }
       );
+
       const result = await res.json();
       if (res.status >= 400 && res.status < 600) {
         throw new Error(result.message);
       } else {
         setMessage("success");
-        setError("Blog Addedd !");
+        setError("Blog Updated !");
       }
     } catch (error) {
       setMessage("error");
@@ -68,6 +74,43 @@ export default function AddBlogForm() {
       console.log(error.message);
     }
   }
+
+  const updateBlogStatus = async (event) => {
+    event.preventDefault();
+
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_NODE_API_SERVER}/blog/status`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          method: "POST",
+          body: JSON.stringify({
+            id: blog.id,
+            status: blog.status === "Published" ? "Un-Published" : "Published",
+          }),
+        }
+      );
+
+      const result = await res.json();
+
+      if (res.status >= 400 && res.status < 600) {
+        throw new Error(result.message);
+      } else {
+        setMessage("success");
+        setError(
+          blog.status === "Published"
+            ? "Blog un-published successfully !"
+            : "Blog published successfully !"
+        );
+      }
+    } catch (error) {
+      setMessage("failed");
+      setError(error.message);
+      console.log(error.message);
+    }
+  };
 
   return (
     <div className="py-8 my-8">
@@ -105,11 +148,7 @@ export default function AddBlogForm() {
             <div className="flex flex-col h-36 w-1/3">
               <img
                 className="w-full object-contain min-h-0 rounded overflow-hidden "
-                src={
-                  blogImage
-                    ? URL.createObjectURL(blogImage)
-                    : "/images/placeholder/product.svg"
-                }
+                src={blogImage ? URL.createObjectURL(blogImage) : blog.image}
                 alt="blog photo"
               />
             </div>
@@ -180,6 +219,7 @@ export default function AddBlogForm() {
           <div className=" w-full md:w-2/3">
             <Editor
               name="content"
+              value={blog.content}
               onChange={(data) => {
                 setData(data);
               }}
@@ -190,10 +230,17 @@ export default function AddBlogForm() {
 
         <div className="relative text-center lg:text-end">
           <button
-            type="submit"
-            className="px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-orange/90 rounded-sm shadow-sm focus:outline-none hover:bg-opacity-90"
+            onClick={updateBlogStatus}
+            className="px-8 py-1.5 bg-teal-500 font-medium text-white hover:bg-orange/70 mr-8"
           >
-            Add Blog
+            {blog.status === "Published" ? "Un-Publish Blog" : "Publish Blog"}
+          </button>
+
+          <button
+            type="submit"
+            className="px-8 py-1.5 bg-orange font-medium text-white hover:bg-orange/70"
+          >
+            Update Blog
           </button>
         </div>
       </form>

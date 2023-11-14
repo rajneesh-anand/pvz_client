@@ -8,11 +8,7 @@ const AddItemForm = dynamic(() => import("@components/item/create-item"));
 export default function ItemCreatePage() {
   return (
     <>
-      <Seo
-        title="Add Product"
-        description="Add product"
-        canonical="/product/create"
-      />
+      <Seo title="Add Item" description="Add Item" canonical="/item/create" />
       <AddItemForm />
     </>
   );
