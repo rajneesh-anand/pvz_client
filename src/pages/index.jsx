@@ -1,13 +1,17 @@
 import Layout from "@components/layout";
 import axios from "axios";
-import UserList from "@components/user/user-list";
 import { getSession } from "next-auth/react";
 import Seo from "@components/common/seo";
+import dynamic from "next/dynamic";
+
+const UserList = dynamic(() => import("@components/user/user-list"), {
+  ssr: false,
+});
 
 export default function HomePage({ users }) {
   return (
     <>
-      <Seo title="Dashboard" description="Admin Dashboard" canonical="/" />
+      <Seo title="Users" description="Admin Dashboard" canonical="/" />
       <UserList data={users} />
     </>
   );

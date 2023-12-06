@@ -41,9 +41,9 @@ export default function LoginPage({ csrfToken }) {
         canonical="/auth/signin"
       />
       <Container>
-        <div className="flex items-center justify-center h-screen bg-light ">
-          <div className="m-auto max-w-md w-full bg-yellow/25 sm:shadow p-5 sm:p-8 rounded ">
-            <h3 className="text-center text-cyan-700 text-lg font-semibold mb-4 mt-4">
+        <div className="bg-light flex h-screen items-center justify-center ">
+          <div className="bg-yellow/25 m-auto w-full max-w-md rounded p-5 sm:p-8 sm:shadow ">
+            <h3 className="mb-4 mt-4 text-center text-lg font-semibold text-cyan-700">
               Admin Sign In
             </h3>
             <form onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -76,7 +76,7 @@ export default function LoginPage({ csrfToken }) {
               <div className="relative">
                 <button
                   type="submit"
-                  className="inline-flex items-center justify-center w-full  px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-orange/90 rounded-sm shadow-sm focus:outline-none hover:bg-opacity-90"
+                  className="whitespace-no-wrap inline-flex w-full items-center  justify-center rounded-sm bg-orange-500 px-4 py-2 font-medium leading-6 text-white text-white shadow-sm hover:bg-opacity-90 focus:outline-none"
                 >
                   Sign In
                 </button>

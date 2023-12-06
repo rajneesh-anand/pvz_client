@@ -5,6 +5,9 @@ const initialState = {
   displaySidebar: false,
   displayDrawer: false,
   drawerView: null,
+  sidebar: false,
+  navbar: "navbar-sticky",
+  animate: "",
   data: null,
 };
 
@@ -47,6 +50,13 @@ function uiReducer(state, action) {
         drawerView: action.view,
       };
     }
+
+    case "TOGGLE_SIDEBAR": {
+      return {
+        ...state,
+        sidebar: !state.sidebar,
+      };
+    }
   }
 }
 
@@ -55,6 +65,7 @@ export const UIProvider = (props) => {
 
   const openSidebar = () => dispatch({ type: "OPEN_SIDEBAR" });
   const closeSidebar = () => dispatch({ type: "CLOSE_SIDEBAR" });
+  const toggleSidebar = () => dispatch({ type: "TOGGLE_SIDEBAR" });
   const openDrawer = (data) => dispatch({ type: "OPEN_DRAWER", data });
   const closeDrawer = () => dispatch({ type: "CLOSE_DRAWER" });
   const setDrawerView = (view) => dispatch({ type: "SET_DRAWER_VIEW", view });
@@ -64,6 +75,7 @@ export const UIProvider = (props) => {
       ...state,
       openSidebar,
       closeSidebar,
+      toggleSidebar,
       openDrawer,
       closeDrawer,
       setDrawerView,

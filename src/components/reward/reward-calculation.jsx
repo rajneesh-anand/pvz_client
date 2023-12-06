@@ -47,15 +47,6 @@ export default function RewardCalculation() {
 
   return (
     <>
-      {error && (
-        <Alert
-          message={error}
-          variant={message}
-          closeable={true}
-          className="mt-5"
-          onClose={() => setError(null)}
-        />
-      )}
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <Input
           label="Mobile Number"
@@ -103,12 +94,22 @@ export default function RewardCalculation() {
         <div className="relative text-center lg:text-end">
           <button
             type="submit"
-            className="px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-orange/90 rounded-sm shadow-sm focus:outline-none hover:bg-opacity-90"
+            className="whitespace-no-wrap rounded-sm bg-orange-500 px-4 py-1 text-base font-medium leading-6 text-white shadow-sm hover:bg-opacity-90 focus:outline-none"
           >
             Send Reward
           </button>
         </div>
       </form>
+
+      {error && (
+        <Alert
+          message={error}
+          variant={message}
+          closeable={true}
+          className="mt-5"
+          onClose={() => setError(null)}
+        />
+      )}
     </>
   );
 }

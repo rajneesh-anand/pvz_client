@@ -61,10 +61,10 @@ export default function AddItemForm() {
   }
 
   return (
-    <div className="pt-8 pb-16">
+    <div className="pb-16 pt-8">
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
-        <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2  md:w-1/3">
+        <div className="mb-2 flex flex-col items-center justify-between md:flex-row">
+          <p className="w-full px-0 pb-2 font-semibold text-slate-700 sm:pr-4 md:w-1/3  md:pr-5">
             Item Image
           </p>
           <div className="flex w-full md:w-2/3 ">
@@ -81,7 +81,7 @@ export default function AddItemForm() {
                   >
                     <input {...getInputProps()} />
                     <UploadIcon className="text-slate-400" color="#7f7777" />
-                    <p className="mt-4 font-semibold text-center text-[12px] lg:text-sm ">
+                    <p className="mt-4 text-center text-[12px] font-semibold lg:text-sm ">
                       <span className=" text-blue-700">
                         Click here to upload item image
                       </span>{" "}
@@ -93,9 +93,9 @@ export default function AddItemForm() {
                 </section>
               )}
             </Dropzone>
-            <div className="flex flex-col h-36 w-1/3">
+            <div className="flex h-36 w-1/3 flex-col">
               <img
-                className="w-full object-contain min-h-0 rounded overflow-hidden "
+                className="min-h-0 w-full overflow-hidden rounded object-contain "
                 src={
                   productImage
                     ? URL.createObjectURL(productImage)
@@ -106,8 +106,8 @@ export default function AddItemForm() {
             </div>
           </div>
         </div>
-        <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2  md:w-1/3">
+        <div className="mb-2 flex flex-col items-center justify-between md:flex-row">
+          <p className="w-full px-0 pb-2 font-semibold text-slate-700 sm:pr-4 md:w-1/3  md:pr-5">
             Item Name
           </p>
           <Input
@@ -121,8 +121,8 @@ export default function AddItemForm() {
             error={errors.name?.message}
           />
         </div>
-        <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2  md:w-1/3">
+        <div className="mb-2 flex flex-col items-center justify-between md:flex-row">
+          <p className="w-full px-0 pb-2 font-semibold text-slate-700 sm:pr-4 md:w-1/3  md:pr-5">
             Item Link
           </p>
           <Input
@@ -137,8 +137,8 @@ export default function AddItemForm() {
           />
         </div>
 
-        <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2 md:w-1/3">
+        <div className="mb-2 flex flex-col items-center justify-between md:flex-row">
+          <p className="w-full px-0 pb-2 font-semibold text-slate-700 sm:pr-4 md:w-1/3 md:pr-5">
             Price
           </p>
           <Input
@@ -156,8 +156,8 @@ export default function AddItemForm() {
             error={errors.price?.message}
           />
         </div>
-        <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2 md:w-1/3">
+        <div className="mb-2 flex flex-col items-center justify-between md:flex-row">
+          <p className="w-full px-0 pb-2 font-semibold text-slate-700 sm:pr-4 md:w-1/3 md:pr-5">
             Sale Price
           </p>
           <Input
@@ -175,8 +175,8 @@ export default function AddItemForm() {
             error={errors.sprice?.message}
           />
         </div>
-        <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2 md:w-1/3">
+        <div className="mb-2 flex flex-col items-center justify-between md:flex-row">
+          <p className="w-full px-0 pb-2 font-semibold text-slate-700 sm:pr-4 md:w-1/3 md:pr-5">
             Quantity In Stock
           </p>
           <Input
@@ -195,8 +195,8 @@ export default function AddItemForm() {
           />
         </div>
 
-        <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2 md:w-1/3">
+        <div className="mb-2 flex flex-col items-center justify-between md:flex-row">
+          <p className="w-full px-0 pb-2 font-semibold text-slate-700 sm:pr-4 md:w-1/3 md:pr-5">
             Item Marketplace
           </p>
           <Select
@@ -208,8 +208,8 @@ export default function AddItemForm() {
           />
         </div>
 
-        <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2 md:w-1/3">
+        <div className="mb-2 flex flex-col items-center justify-between md:flex-row">
+          <p className="w-full px-0 pb-2 font-semibold text-slate-700 sm:pr-4 md:w-1/3 md:pr-5">
             Item Category
           </p>
           <Select
@@ -220,8 +220,8 @@ export default function AddItemForm() {
             onChange={(value) => setCategory(value)}
           />
         </div>
-        <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2 md:w-1/3">
+        <div className="mb-2 flex flex-col items-center justify-between md:flex-row">
+          <p className="w-full px-0 pb-2 font-semibold text-slate-700 sm:pr-4 md:w-1/3 md:pr-5">
             Item Status
           </p>
           <Select
@@ -236,9 +236,9 @@ export default function AddItemForm() {
         <div className="relative text-center lg:text-end">
           <button
             type="submit"
-            className="px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-orange/90 rounded-sm shadow-sm focus:outline-none hover:bg-opacity-90"
+            className="whitespace-no-wrap rounded-sm bg-orange-500 px-4 py-1 text-base font-medium leading-6 text-white shadow-sm hover:bg-opacity-90 focus:outline-none"
           >
-            Add Item
+            Save
           </button>
         </div>
       </form>

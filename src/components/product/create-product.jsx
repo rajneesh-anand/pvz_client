@@ -62,18 +62,9 @@ export default function AddProductForm() {
 
   return (
     <div className="py-8">
-      {error && (
-        <Alert
-          message={error}
-          variant={message}
-          closeable={true}
-          className="mt-5"
-          onClose={() => setError(null)}
-        />
-      )}
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
-        <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2  md:w-1/3">
+        <div className="mb-2 flex flex-col items-center justify-between md:flex-row">
+          <p className="w-full px-0 pb-2 font-semibold text-slate-700 sm:pr-4 md:w-1/3  md:pr-5">
             Product Image
           </p>
           <div className="flex w-full md:w-2/3 ">
@@ -90,7 +81,7 @@ export default function AddProductForm() {
                   >
                     <input {...getInputProps()} />
                     <UploadIcon className="text-slate-400" color="#7f7777" />
-                    <p className="mt-4 font-semibold text-center text-[12px] lg:text-sm ">
+                    <p className="mt-4 text-center text-[12px] font-semibold lg:text-sm ">
                       <span className=" text-blue-700">
                         Click here to upload product image
                       </span>{" "}
@@ -102,9 +93,9 @@ export default function AddProductForm() {
                 </section>
               )}
             </Dropzone>
-            <div className="flex flex-col h-36 w-1/3">
+            <div className="flex h-36 w-1/3 flex-col">
               <img
-                className="w-full object-contain min-h-0 rounded overflow-hidden "
+                className="min-h-0 w-full overflow-hidden rounded object-contain "
                 src={
                   productImage
                     ? URL.createObjectURL(productImage)
@@ -115,8 +106,8 @@ export default function AddProductForm() {
             </div>
           </div>
         </div>
-        <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2  md:w-1/3">
+        <div className="mb-2 flex flex-col items-center justify-between md:flex-row">
+          <p className="w-full px-0 pb-2 font-semibold text-slate-700 sm:pr-4 md:w-1/3  md:pr-5">
             Product Name
           </p>
           <Input
@@ -130,8 +121,8 @@ export default function AddProductForm() {
             error={errors.name?.message}
           />
         </div>
-        <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2  md:w-1/3">
+        <div className="mb-2 flex flex-col items-center justify-between md:flex-row">
+          <p className="w-full px-0 pb-2 font-semibold text-slate-700 sm:pr-4 md:w-1/3  md:pr-5">
             Product Description
           </p>
           <Input
@@ -146,8 +137,8 @@ export default function AddProductForm() {
           />
         </div>
 
-        <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2 md:w-1/3">
+        <div className="mb-2 flex flex-col items-center justify-between md:flex-row">
+          <p className="w-full px-0 pb-2 font-semibold text-slate-700 sm:pr-4 md:w-1/3 md:pr-5">
             Product Coin Value
           </p>
           <Input
@@ -165,8 +156,8 @@ export default function AddProductForm() {
             error={errors.coinvalue?.message}
           />
         </div>
-        <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2 md:w-1/3">
+        <div className="mb-2 flex flex-col items-center justify-between md:flex-row">
+          <p className="w-full px-0 pb-2 font-semibold text-slate-700 sm:pr-4 md:w-1/3 md:pr-5">
             Quantity In Stock
           </p>
           <Input
@@ -184,8 +175,8 @@ export default function AddProductForm() {
             error={errors.stock?.message}
           />
         </div>
-        <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2 md:w-1/3">
+        <div className="mb-2 flex flex-col items-center justify-between md:flex-row">
+          <p className="w-full px-0 pb-2 font-semibold text-slate-700 sm:pr-4 md:w-1/3 md:pr-5">
             Product Category
           </p>
           <Select
@@ -196,8 +187,8 @@ export default function AddProductForm() {
             onChange={(value) => setCategory(value)}
           />
         </div>
-        <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2 md:w-1/3">
+        <div className="mb-2 flex flex-col items-center justify-between md:flex-row">
+          <p className="w-full px-0 pb-2 font-semibold text-slate-700 sm:pr-4 md:w-1/3 md:pr-5">
             Product Status
           </p>
           <Select
@@ -212,12 +203,21 @@ export default function AddProductForm() {
         <div className="relative text-center lg:text-end">
           <button
             type="submit"
-            className="px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-orange/90 rounded-sm shadow-sm focus:outline-none hover:bg-opacity-90"
+            className="whitespace-no-wrap rounded-sm bg-orange-500 px-4 py-1 text-base font-medium leading-6 text-white shadow-sm hover:bg-opacity-90 focus:outline-none"
           >
-            Add Product
+            Save
           </button>
         </div>
       </form>
+      {error && (
+        <Alert
+          message={error}
+          variant={message}
+          closeable={true}
+          className="mt-5"
+          onClose={() => setError(null)}
+        />
+      )}
     </div>
   );
 }

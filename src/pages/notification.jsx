@@ -48,7 +48,7 @@ export default function NotificationPage() {
       <Seo
         title="Notification"
         description="Admin Dashboard"
-        canonical="/gifts"
+        canonical="notification"
       />
       <div className="mt-1">
         {error && (
@@ -85,10 +85,10 @@ export default function NotificationPage() {
               error={errors.msgDescription?.message}
             />
           </div>
-          <div className="relative text-center lg:text-end mt-4">
+          <div className="relative mt-4 text-center lg:text-end">
             <button
               type="submit"
-              className="px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-orange/90 rounded-sm shadow-sm focus:outline-none hover:bg-opacity-90"
+              className="whitespace-no-wrap rounded-sm bg-orange-500 px-4 py-1 text-base font-medium leading-6 text-white shadow-sm hover:bg-opacity-90 focus:outline-none"
             >
               Send Message
             </button>

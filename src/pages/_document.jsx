@@ -8,7 +8,7 @@ export default class CustomDocument extends Document {
   }
   render() {
     return (
-      <Html lang="en">
+      <Html lang="en" dir="ltr">
         <Head>
           <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
@@ -68,9 +68,10 @@ export default class CustomDocument extends Document {
             color="#5bbad5"
           />
           <link rel="shortcut icon" href="/favicon.ico" />
+
           <link
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
+            href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap"
           />
 
           <script

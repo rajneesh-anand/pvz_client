@@ -7,7 +7,7 @@ import Seo from "@components/common/seo";
 export default function GiftPage({ giftList }) {
   return (
     <>
-      <Seo title="Gifts" description="Admin Dashboard" canonical="/gifts" />
+      <Seo title="Gifts" description="Admin Dashboard" canonical="gifts" />
       <GiftList data={giftList} />
     </>
   );

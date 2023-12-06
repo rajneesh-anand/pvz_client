@@ -1,4 +1,4 @@
-import Link from "@components/ui/link";
+import Link from "next/link";
 import dayjs from "dayjs";
 import EditIcon from "@assets/icons/edit-icon";
 
@@ -22,27 +22,27 @@ const FeedbackList = ({ data }) => {
             <div className="inline-block min-w-full overflow-hidden align-middle ">
               <table className="min-w-full">
                 <thead>
-                  <tr className="border-b border-gray-200 bg-gray-50 text-blue-600 uppercase ">
-                    <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                  <tr className="border-b border-gray-200 bg-gray-50 uppercase text-blue-600 ">
+                    <th className="px-3 py-3 text-left text-xs font-medium leading-4 tracking-wider ">
                       Photo
                     </th>
-                    <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                    <th className="px-3 py-3 text-left text-xs font-medium leading-4 tracking-wider ">
                       Name
                     </th>
-                    <th className="w-[132px] px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                    <th className="w-[140px] px-3 py-3 text-left text-xs font-medium leading-4 tracking-wider ">
                       Mobile
                     </th>
-                    <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                    <th className="px-3 py-3 text-left text-xs font-medium leading-4 tracking-wider ">
                       Message
                     </th>
-                    <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                    <th className="px-3 py-3 text-left text-xs font-medium leading-4 tracking-wider ">
                       Date
                     </th>
-                    <th className="w-[148px] px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                    <th className="w-[148px] px-3 py-3 text-left text-xs font-medium leading-4 tracking-wider ">
                       Status
                     </th>
 
-                    <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                    <th className="px-3 py-3 text-left text-xs font-medium leading-4 tracking-wider ">
                       Action
                     </th>
                   </tr>
@@ -52,7 +52,7 @@ const FeedbackList = ({ data }) => {
                   {data.map((item, index) => {
                     return (
                       <tr key={index} className="border-b border-gray-200">
-                        <td className="px-3 py-4 whitespace-no-wrap ">
+                        <td className="whitespace-no-wrap px-3 py-4 ">
                           <div className="flex items-center">
                             <div className="text-sm font-medium leading-5 text-gray-900">
                               <img
@@ -69,7 +69,7 @@ const FeedbackList = ({ data }) => {
                           </div>
                         </td>
 
-                        <td className="px-3 py-4 whitespace-no-wrap ">
+                        <td className="whitespace-no-wrap px-3 py-4 ">
                           <div className="flex items-center">
                             <div className="text-sm leading-5 ">
                               {item.name}
@@ -77,14 +77,14 @@ const FeedbackList = ({ data }) => {
                           </div>
                         </td>
 
-                        <td className="px-3 py-4 whitespace-no-wrap ">
+                        <td className="whitespace-no-wrap px-3 py-4 ">
                           <div className="flex items-center">
                             <div className="text-sm  leading-5  ">
                               {maskMobileNumber(item.mobile)}
                             </div>
                           </div>
                         </td>
-                        <td className="px-3 py-4 whitespace-no-wrap ">
+                        <td className="whitespace-no-wrap px-3 py-4 ">
                           <div className="flex items-center">
                             <div className="text-sm leading-5 ">
                               {item.message}
@@ -92,7 +92,7 @@ const FeedbackList = ({ data }) => {
                           </div>
                         </td>
 
-                        <td className="px-3 py-4 whitespace-no-wrap ">
+                        <td className="whitespace-no-wrap px-3 py-4 ">
                           <div className="flex items-center">
                             <div className="text-sm leading-5 ">
                               {dayjs(item.createdAt).format("DD/MM/YYYY")}
@@ -100,13 +100,13 @@ const FeedbackList = ({ data }) => {
                           </div>
                         </td>
 
-                        <td className="px-3 py-4 whitespace-no-wrap ">
+                        <td className="whitespace-no-wrap px-3 py-4 ">
                           <div className="flex items-center">
                             <div
                               className={
                                 item.status === "Published"
-                                  ? "rounded-full text-sm font-semibold leading-5 py-[2px] px-4 bg-green-700 text-white"
-                                  : "rounded-full text-sm font-semibold leading-5 py-[2px] px-4 bg-rose-700 text-white"
+                                  ? "rounded-full bg-green-700 px-4 py-[2px] text-sm font-semibold leading-5 text-white"
+                                  : "rounded-full bg-rose-700 px-4 py-[2px] text-sm font-semibold leading-5 text-white"
                               }
                             >
                               {item.status}
@@ -114,7 +114,7 @@ const FeedbackList = ({ data }) => {
                           </div>
                         </td>
 
-                        <td className="px-3 py-4 whitespace-no-wrap ">
+                        <td className="whitespace-no-wrap px-3 py-4 ">
                           <div className="flex items-center">
                             <Link href={`/feedback/${item.id}/`}>
                               <EditIcon
@@ -133,8 +133,8 @@ const FeedbackList = ({ data }) => {
           </div>
         </div>
       ) : (
-        <div className="flex justify-center items-center h-screen">
-          <p className="bg-rose-700 font-semibold  py-2 px-8 text-white">
+        <div className="flex h-screen items-center justify-center">
+          <p className="bg-rose-700 px-8  py-2 font-semibold text-white">
             No Feedbacks
           </p>
         </div>

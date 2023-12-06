@@ -1,4 +1,4 @@
-import Link from "@components/ui/link";
+import Link from "next/link";
 import dayjs from "dayjs";
 import EditIcon from "@assets/icons/edit-icon";
 
@@ -22,26 +22,26 @@ const GiftList = ({ data }) => {
             <div className="inline-block min-w-full overflow-hidden align-middle ">
               <table className="min-w-full">
                 <thead>
-                  <tr className="border-b border-gray-200 bg-gray-50 text-blue-600 uppercase ">
-                    <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                  <tr className="border-b border-gray-200 bg-gray-50 uppercase text-blue-600 ">
+                    <th className="px-3 py-3 text-left text-xs font-medium leading-4 tracking-wider ">
                       Name
                     </th>
-                    <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                    <th className="px-3 py-3 text-left text-xs font-medium leading-4 tracking-wider ">
                       Mobile
                     </th>
-                    <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                    <th className="px-3 py-3 text-left text-xs font-medium leading-4 tracking-wider ">
                       Code
                     </th>
-                    <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                    <th className="px-3 py-3 text-left text-xs font-medium leading-4 tracking-wider ">
                       Created Date
                     </th>
-                    <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                    <th className="px-3 py-3 text-left text-xs font-medium leading-4 tracking-wider ">
                       Status
                     </th>
-                    <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                    <th className="px-3 py-3 text-left text-xs font-medium leading-4 tracking-wider ">
                       Received Date
                     </th>
-                    <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                    <th className="px-3 py-3 text-left text-xs font-medium leading-4 tracking-wider ">
                       Action
                     </th>
                   </tr>
@@ -51,7 +51,7 @@ const GiftList = ({ data }) => {
                   {data.map((item, index) => {
                     return (
                       <tr key={index} className="border-b border-gray-200">
-                        <td className="px-3 py-4 whitespace-no-wrap ">
+                        <td className="whitespace-no-wrap px-3 py-4 ">
                           <div className="flex items-center">
                             <div className="text-sm font-medium leading-5 text-gray-900">
                               {item.name}
@@ -59,7 +59,7 @@ const GiftList = ({ data }) => {
                           </div>
                         </td>
 
-                        <td className="px-3 py-4 whitespace-no-wrap ">
+                        <td className="whitespace-no-wrap px-3 py-4 ">
                           <div className="flex items-center">
                             <div className="text-sm font-medium leading-5 text-gray-900">
                               {maskMobileNumber(item.mobile)}
@@ -67,15 +67,15 @@ const GiftList = ({ data }) => {
                           </div>
                         </td>
 
-                        <td className="px-3 py-4 whitespace-no-wrap ">
+                        <td className="whitespace-no-wrap px-3 py-4 ">
                           <div className="flex items-center">
-                            <div className="text-md font-bold leading-5 text-indigo-900 uppercase">
+                            <div className="text-md font-bold uppercase leading-5 text-indigo-900">
                               {item.redeemCode}
                             </div>
                           </div>
                         </td>
 
-                        <td className="px-3 py-4 whitespace-no-wrap ">
+                        <td className="whitespace-no-wrap px-3 py-4 ">
                           <div className="flex items-center">
                             <div className="text-sm font-medium leading-5 text-gray-900">
                               {dayjs(item.createdAt).format("DD/MM/YYYY")}
@@ -83,20 +83,20 @@ const GiftList = ({ data }) => {
                           </div>
                         </td>
 
-                        <td className="px-3 py-4 whitespace-no-wrap">
+                        <td className="whitespace-no-wrap px-3 py-4">
                           <div className="flex items-center">
                             <div
                               className={
                                 item.redeemStatus === "Created"
-                                  ? "text-sm font-medium leading-5 text-orange"
-                                  : "text-sm font-medium leading-5 text-green-900"
+                                  ? "rounded-full bg-green-700 px-4 py-0.5 text-sm font-semibold leading-5 text-white"
+                                  : "rounded-full bg-rose-700 px-4 py-0.5 text-sm font-semibold leading-5 text-white"
                               }
                             >
                               {item.redeemStatus}
                             </div>
                           </div>
                         </td>
-                        <td className="px-3 py-4 whitespace-no-wrap">
+                        <td className="whitespace-no-wrap px-3 py-4">
                           {item.receivedAt && (
                             <div className="flex items-center">
                               <div className="text-sm font-medium leading-5 text-gray-900">
@@ -106,7 +106,7 @@ const GiftList = ({ data }) => {
                           )}
                         </td>
 
-                        <td className="px-3 py-4 whitespace-no-wrap ">
+                        <td className="whitespace-no-wrap px-3 py-4 ">
                           <div className="flex items-center">
                             <Link
                               href={`/gift/${item.redeemCode}/${item.mobile}`}
@@ -127,8 +127,8 @@ const GiftList = ({ data }) => {
           </div>
         </div>
       ) : (
-        <div className="flex justify-center items-center h-screen">
-          <p className="bg-rose-700 font-semibold  py-2 px-8 text-white">
+        <div className="flex h-screen items-center justify-center">
+          <p className="bg-rose-700 px-8  py-2 font-semibold text-white">
             No Gifts
           </p>
         </div>

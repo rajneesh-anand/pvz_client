@@ -10,7 +10,7 @@ export default function FeedbackListPage({ feedBackList }) {
       <Seo
         title="Feedback"
         description="Admin Dashboard"
-        canonical="/feedback"
+        canonical="feedback"
       />
       <FeedbackList data={feedBackList} />
     </>

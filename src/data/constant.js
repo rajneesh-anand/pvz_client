@@ -1,45 +1,84 @@
 import PhoneIcon from "@assets/icons/phone";
 import UserIcon from "@assets/icons/user-icon";
+import CaretDown from "@assets/icons/caret-down";
+import IconMenuUsers from "@assets/icons/menu-users";
+import IconMenuChat from "@assets/icons/menu-chat";
+import IconDollar from "@assets/icons/dollar-icon";
+import IconMenuForms from "@assets/icons/form-icon";
+import IconMenuWidgets from "@assets/icons/widget-icon";
+import IconMenuNotes from "@assets/icons/notes-icon";
+import IconMenuComponents from "@assets/icons/component-icon";
+
 export const sidebarNavItems = [
   {
     title: "Users",
     href: "/",
-    icon: <UserIcon color="#ffffff" height={24} width={24} />,
+    icon: <IconMenuUsers className="shrink-0 group-hover:!text-primary" />,
   },
   {
     title: "Gifts",
     href: "/gifts",
-    icon: <PhoneIcon height={24} width={24} />,
+    icon: <IconMenuWidgets className="shrink-0 group-hover:!text-primary" />,
   },
   {
     title: "Push Notification",
     href: "/notification",
-    icon: <PhoneIcon height={24} width={24} />,
+    icon: <IconMenuChat className="shrink-0 group-hover:!text-primary" />,
   },
   {
     title: "Reward Calculation",
     href: "/calculation",
-    icon: <PhoneIcon height={24} width={24} />,
+    icon: <IconDollar className="shrink-0 group-hover:!text-primary" />,
   },
   {
     title: "Products",
     href: "/products",
-    icon: <PhoneIcon height={24} width={24} />,
+    icon: <IconMenuComponents className="shrink-0 group-hover:!text-primary" />,
+    subMenu: [
+      {
+        title: "New Product",
+        href: "/products/create",
+      },
+      {
+        title: "Products List",
+        href: "/products",
+      },
+    ],
   },
   {
     title: "Feedbacks",
     href: "/feedbacks",
-    icon: <PhoneIcon height={24} width={24} />,
+    icon: <IconMenuNotes className="shrink-0 group-hover:!text-primary" />,
   },
   {
     title: "Blogs",
     href: "/blogs",
-    icon: <PhoneIcon height={24} width={24} />,
+    icon: <IconMenuForms className="shrink-0 group-hover:!text-primary" />,
+    subMenu: [
+      {
+        title: "New Blog",
+        href: "/blogs/create",
+      },
+      {
+        title: "Blogs List",
+        href: "/blogs",
+      },
+    ],
   },
   {
     title: "Items",
     href: "/items",
-    icon: <PhoneIcon height={24} width={24} />,
+    icon: <IconMenuComponents className="shrink-0 group-hover:!text-primary" />,
+    subMenu: [
+      {
+        title: "New Item",
+        href: "/items/create",
+      },
+      {
+        title: "Items List",
+        href: "/items",
+      },
+    ],
   },
 ];
 

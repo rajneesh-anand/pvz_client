@@ -9,7 +9,7 @@ export default function CalculationPage() {
       <Seo
         title="Reward Calculation"
         description="Admin Dashboard"
-        canonical="/calculation"
+        canonical="calculation"
       />
       <RewardCalculation />
     </>

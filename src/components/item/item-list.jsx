@@ -1,4 +1,4 @@
-import Link from "@components/ui/link";
+import Link from "next/link";
 import EditIcon from "@assets/icons/edit-icon";
 
 const ItemList = ({ data }) => {
@@ -11,30 +11,30 @@ const ItemList = ({ data }) => {
               {data.length > 0 && (
                 <table className="min-w-full">
                   <thead>
-                    <tr className="border-b border-gray-200 bg-gray-50 text-blue-600 uppercase ">
-                      <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                    <tr className="border-b border-gray-200 bg-gray-50 uppercase text-orange-700  ">
+                      <th className="px-3 py-3 text-left text-xs font-medium leading-4 tracking-wider ">
                         Image
                       </th>
-                      <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                      <th className="px-3 py-3 text-left text-xs font-medium leading-4 tracking-wider ">
                         Name
                       </th>
-                      <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                      <th className="w-[128px] px-3 py-3 text-left text-xs font-medium leading-4 tracking-wider ">
                         Market Place
                       </th>
-                      <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                      <th className="px-3 py-3 text-left text-xs font-medium leading-4 tracking-wider ">
                         Price
                       </th>
-                      <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                      <th className="w-[120px] px-3 py-3 text-left text-xs font-medium leading-4 tracking-wider ">
                         Sale Price
                       </th>
-                      <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                      <th className="px-3 py-3 text-left text-xs font-medium leading-4 tracking-wider ">
                         Discount
                       </th>
-                      <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                      <th className="px-3 py-3 text-left text-xs font-medium leading-4 tracking-wider ">
                         Status
                       </th>
 
-                      <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                      <th className="px-3 py-3 text-left text-xs font-medium leading-4 tracking-wider ">
                         Action
                       </th>
                     </tr>
@@ -44,7 +44,7 @@ const ItemList = ({ data }) => {
                     {data.map((item, index) => {
                       return (
                         <tr key={index} className="border-b border-gray-200">
-                          <td className="px-3 py-4 whitespace-no-wrap ">
+                          <td className="whitespace-no-wrap px-3 py-4 ">
                             <div className="flex items-center">
                               <div className="text-sm font-medium leading-5 text-gray-900">
                                 <img
@@ -61,14 +61,14 @@ const ItemList = ({ data }) => {
                             </div>
                           </td>
 
-                          <td className="px-3 py-4 whitespace-no-wrap ">
+                          <td className="whitespace-no-wrap px-3 py-4 ">
                             <div className="flex items-center">
                               <div className="text-sm font-medium leading-5 text-gray-900">
                                 {item.name}
                               </div>
                             </div>
                           </td>
-                          <td className="px-3 py-4 whitespace-no-wrap ">
+                          <td className="whitespace-no-wrap px-3 py-4 ">
                             <div className="flex items-center">
                               <div className="text-sm font-medium leading-5 text-gray-900 ">
                                 {JSON.parse(item.marketPlace).value}
@@ -76,7 +76,7 @@ const ItemList = ({ data }) => {
                             </div>
                           </td>
 
-                          <td className="px-3 py-4 whitespace-no-wrap ">
+                          <td className="whitespace-no-wrap px-3 py-4 ">
                             <div className="flex items-center">
                               <div className="text-sm font-medium leading-5 text-gray-900 ">
                                 {item.price}
@@ -84,27 +84,27 @@ const ItemList = ({ data }) => {
                             </div>
                           </td>
 
-                          <td className="px-3 py-4 whitespace-no-wrap ">
+                          <td className="whitespace-no-wrap px-3 py-4 ">
                             <div className="flex items-center">
                               <div className="text-sm font-medium leading-5 text-gray-900">
                                 {item.salePrice}
                               </div>
                             </div>
                           </td>
-                          <td className="px-3 py-4 whitespace-no-wrap ">
+                          <td className="whitespace-no-wrap px-3 py-4 ">
                             <div className="flex items-center">
                               <div className="text-sm font-medium leading-5 text-gray-900">
-                                {item.discount}
+                                - {item.discount} %
                               </div>
                             </div>
                           </td>
-                          <td className="px-3 py-4 whitespace-no-wrap ">
+                          <td className="whitespace-no-wrap px-3 py-4 ">
                             <div className="flex items-center">
                               <div
                                 className={
                                   JSON.parse(item.status).value === "Active"
-                                    ? "rounded-full text-sm font-semibold leading-5 py-[2px] px-4 bg-green-700 text-white"
-                                    : "rounded-full text-sm font-semibold leading-5 py-[2px] px-4 bg-rose-700 text-white"
+                                    ? "rounded-full bg-green-700 px-4 py-[2px] text-sm font-semibold leading-5 text-white"
+                                    : "rounded-full bg-rose-700 px-4 py-[2px] text-sm font-semibold leading-5 text-white"
                                 }
                               >
                                 {JSON.parse(item.status).value}
@@ -112,7 +112,7 @@ const ItemList = ({ data }) => {
                             </div>
                           </td>
 
-                          <td className="px-3 py-4 whitespace-no-wrap ">
+                          <td className="whitespace-no-wrap px-3 py-4 ">
                             <div className="flex items-center">
                               <Link href={`/items/edit/${item.id}`}>
                                 <EditIcon
@@ -132,8 +132,8 @@ const ItemList = ({ data }) => {
           </div>
         </div>
       ) : (
-        <div className="flex justify-center items-center h-screen">
-          <p className="bg-rose-700 font-semibold  py-2 px-8 text-white">
+        <div className="flex h-screen items-center justify-center">
+          <p className="bg-rose-700 px-8  py-2 font-semibold text-white">
             No Products
           </p>
         </div>

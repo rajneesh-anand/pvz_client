@@ -72,12 +72,12 @@ const MessageForm = ({ isPopup = true, className, mobile }) => {
   }
 
   return (
-    <div className="w-full lg:min-w-[400px] py-6 sm:py-10 px-4 sm:px-8 xl:px-12 relative bg-fill rounded-sm shadow-dropDown flex flex-col justify-center">
+    <div className="relative flex w-full flex-col justify-center rounded-sm bg-white px-4 py-6 sm:px-8 sm:py-10 lg:min-w-[400px] xl:px-12">
       {isPopup === true && <CloseButton onClick={closeModal} color="#000000" />}
 
-      <div className="text-[12.5px] lg:text-[14px] font-medium text-center my-2">
-        <p className="py-2 font-medium text-rose-700 text-[14px] px-0">
-          Send push notification !
+      <div className="my-2 text-center text-[12.5px] font-medium lg:text-[14px]">
+        <p className="px-0 py-2 text-[14px] font-medium text-rose-700">
+          Send Push Notification
         </p>
       </div>
 
@@ -109,7 +109,7 @@ const MessageForm = ({ isPopup = true, className, mobile }) => {
         <div className="relative">
           <button
             type="submit"
-            className="inline-flex items-center justify-center w-full font-nunito px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-orange rounded-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-opacity-90"
+            className="whitespace-no-wrap inline-flex w-full items-center justify-center rounded-sm bg-orange-500 px-4 py-1  font-medium leading-6 text-white shadow-sm hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2"
           >
             {processing ? "Sending... " : "Send Message"}
           </button>

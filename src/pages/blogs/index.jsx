@@ -6,8 +6,6 @@ import ErrorMessage from "@components/common/error";
 import Spinner from "@components/ui/spinner";
 import { getSession } from "next-auth/react";
 import Seo from "@components/common/seo";
-import Link from "@components/ui/link";
-import { useBlogQuery } from "@framework/blog-query";
 import useAxiosAuth from "@framework/useAxiosAuth";
 import { useQuery } from "react-query";
 import { mapPaginatorData } from "@framework/data-mapper";
@@ -53,23 +51,13 @@ export default function BlogListPage() {
     }
   );
 
-  console.log(data);
-
   function handlePagination(current) {
     setPage(current);
   }
   return (
     <>
-      <Seo title="Blogs" description="Blogs List" canonical="/blogs" />
+      <Seo title="Blogs" description="Blogs List" canonical="blogs" />
 
-      <div className="flex items-center justify-end mb-4">
-        <Link
-          href={`/blogs/create`}
-          className="px-8 py-1.5 bg-indigo-700 text-white hover:bg-indigo-900"
-        >
-          Add Blog
-        </Link>
-      </div>
       {loading && <Spinner text="Loading" />}
       {error && <ErrorMessage message={error.message} />}
       {data && <BlogList data={data?.blogs} onPagination={handlePagination} />}

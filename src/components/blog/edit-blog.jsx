@@ -113,10 +113,10 @@ export default function EditBlogForm({ blog }) {
   };
 
   return (
-    <div className="py-8 my-8">
+    <div className="py-8">
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
-        <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2  md:w-1/3">
+        <div className="mb-2 flex flex-col items-center justify-between md:flex-row">
+          <p className="w-full px-0 pb-2 font-semibold text-slate-700 sm:pr-4 md:w-1/3  md:pr-5">
             Blog Image
           </p>
           <div className="flex w-full md:w-2/3 ">
@@ -133,7 +133,7 @@ export default function EditBlogForm({ blog }) {
                   >
                     <input {...getInputProps()} />
                     <UploadIcon className="text-slate-400" color="#7f7777" />
-                    <p className="mt-4 font-semibold text-center text-[12px] lg:text-sm ">
+                    <p className="mt-4 text-center text-[12px] font-semibold lg:text-sm ">
                       <span className=" text-blue-700">
                         Click here to upload blog image
                       </span>{" "}
@@ -145,17 +145,17 @@ export default function EditBlogForm({ blog }) {
                 </section>
               )}
             </Dropzone>
-            <div className="flex flex-col h-36 w-1/3">
+            <div className="flex h-36 w-1/3 flex-col">
               <img
-                className="w-full object-contain min-h-0 rounded overflow-hidden "
+                className="min-h-0 w-full overflow-hidden rounded object-contain "
                 src={blogImage ? URL.createObjectURL(blogImage) : blog.image}
                 alt="blog photo"
               />
             </div>
           </div>
         </div>
-        <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2  md:w-1/3">
+        <div className="mb-2 flex flex-col items-center justify-between md:flex-row">
+          <p className="w-full px-0 pb-2 font-semibold text-slate-700 sm:pr-4 md:w-1/3  md:pr-5">
             Blog Title
           </p>
           <Input
@@ -169,8 +169,8 @@ export default function EditBlogForm({ blog }) {
             error={errors.title?.message}
           />
         </div>
-        <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2  md:w-1/3">
+        <div className="mb-2 flex flex-col items-center justify-between md:flex-row">
+          <p className="w-full px-0 pb-2 font-semibold text-slate-700 sm:pr-4 md:w-1/3  md:pr-5">
             Blog Description
           </p>
           <Input
@@ -185,8 +185,8 @@ export default function EditBlogForm({ blog }) {
           />
         </div>
 
-        <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2 md:w-1/3">
+        <div className="mb-2 flex flex-col items-center justify-between md:flex-row">
+          <p className="w-full px-0 pb-2 font-semibold text-slate-700 sm:pr-4 md:w-1/3 md:pr-5">
             Blog Category
           </p>
           <Select
@@ -198,8 +198,8 @@ export default function EditBlogForm({ blog }) {
             isMulti={false}
           />
         </div>
-        <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2 md:w-1/3">
+        <div className="mb-2 flex flex-col items-center justify-between md:flex-row">
+          <p className="w-full px-0 pb-2 font-semibold text-slate-700 sm:pr-4 md:w-1/3 md:pr-5">
             Blog Sub Category
           </p>
           <Select
@@ -212,8 +212,8 @@ export default function EditBlogForm({ blog }) {
           />
         </div>
 
-        <div className="mb-2 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-slate-700 font-semibold sm:pr-4 md:pr-5 w-full px-0 pb-2 md:w-1/3">
+        <div className="mb-2 flex flex-col items-center justify-between md:flex-row">
+          <p className="w-full px-0 pb-2 font-semibold text-slate-700 sm:pr-4 md:w-1/3 md:pr-5">
             Blog Content
           </p>
           <div className=" w-full md:w-2/3">
@@ -231,16 +231,16 @@ export default function EditBlogForm({ blog }) {
         <div className="relative text-center lg:text-end">
           <button
             onClick={updateBlogStatus}
-            className="px-8 py-1.5 bg-teal-500 font-medium text-white hover:bg-orange/70 mr-8"
+            className="mr-8 bg-teal-500 px-4 py-1 font-medium text-white hover:bg-opacity-90"
           >
             {blog.status === "Published" ? "Un-Publish Blog" : "Publish Blog"}
           </button>
 
           <button
             type="submit"
-            className="px-8 py-1.5 bg-orange font-medium text-white hover:bg-orange/70"
+            className="bg-orange-500 px-4 py-1 font-medium text-white hover:bg-opacity-90"
           >
-            Update Blog
+            Update
           </button>
         </div>
       </form>

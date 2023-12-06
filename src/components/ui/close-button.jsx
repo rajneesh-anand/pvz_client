@@ -7,7 +7,7 @@ const CloseButton = ({ className, onClick, color }) => {
       onClick={onClick}
       aria-label="Close Button"
       className={cn(
-        "fixed z-10 inline-flex items-center justify-center w-8 h-8 transition duration-200 text-base text-opacity-50 focus:outline-none  hover:text-opacity-100 top-0.5 md:top-2 lg:top-7 xl:top-10 right-0.5 md:right-2 lg:right-7 xl:right-10 bg-fill lg:bg-transparent rounded-full",
+        "fixed right-0.5 top-0.5 z-10 inline-flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-base  text-opacity-50 transition duration-200 hover:text-opacity-100 focus:outline-none md:right-2 md:top-2 lg:right-7 lg:top-7 lg:bg-transparent xl:right-10 xl:top-10",
         className
       )}
     >

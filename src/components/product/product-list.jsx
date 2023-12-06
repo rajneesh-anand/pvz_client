@@ -1,4 +1,4 @@
-import Link from "@components/ui/link";
+import Link from "next/link";
 import EditIcon from "@assets/icons/edit-icon";
 
 const ProductList = ({ data }) => {
@@ -11,24 +11,24 @@ const ProductList = ({ data }) => {
               {data.length > 0 && (
                 <table className="min-w-full">
                   <thead>
-                    <tr className="border-b border-gray-200 bg-gray-50 text-blue-600 uppercase ">
-                      <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                    <tr className="border-b border-gray-200 bg-gray-50 uppercase text-blue-600 ">
+                      <th className="px-3 py-3 text-left text-xs font-medium leading-4 tracking-wider ">
                         Image
                       </th>
-                      <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                      <th className="px-3 py-3 text-left text-xs font-medium leading-4 tracking-wider ">
                         Name
                       </th>
-                      <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                      <th className="px-3 py-3 text-left text-xs font-medium leading-4 tracking-wider ">
                         Description
                       </th>
-                      <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                      <th className="w-[136px] px-3 py-3 text-left text-xs font-medium leading-4 tracking-wider ">
                         Coin Value
                       </th>
-                      <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                      <th className="px-3 py-3 text-left text-xs font-medium leading-4 tracking-wider ">
                         Status
                       </th>
 
-                      <th className="px-3 py-3 text-xs font-medium leading-4 tracking-wider text-left ">
+                      <th className="px-3 py-3 text-left text-xs font-medium leading-4 tracking-wider ">
                         Action
                       </th>
                     </tr>
@@ -38,7 +38,7 @@ const ProductList = ({ data }) => {
                     {data.map((item, index) => {
                       return (
                         <tr key={index} className="border-b border-gray-200">
-                          <td className="px-3 py-4 whitespace-no-wrap ">
+                          <td className="whitespace-no-wrap px-3 py-4 ">
                             <div className="flex items-center">
                               <div className="text-sm font-medium leading-5 text-gray-900">
                                 <img
@@ -55,7 +55,7 @@ const ProductList = ({ data }) => {
                             </div>
                           </td>
 
-                          <td className="px-3 py-4 whitespace-no-wrap ">
+                          <td className="whitespace-no-wrap px-3 py-4 ">
                             <div className="flex items-center">
                               <div className="text-sm font-medium leading-5 text-gray-900">
                                 {item.name}
@@ -63,7 +63,7 @@ const ProductList = ({ data }) => {
                             </div>
                           </td>
 
-                          <td className="px-3 py-4 whitespace-no-wrap ">
+                          <td className="whitespace-no-wrap px-3 py-4 ">
                             <div className="flex items-center">
                               <div className="text-sm font-medium leading-5 text-gray-900 ">
                                 {item.description}
@@ -71,7 +71,7 @@ const ProductList = ({ data }) => {
                             </div>
                           </td>
 
-                          <td className="px-3 py-4 whitespace-no-wrap ">
+                          <td className="whitespace-no-wrap px-3 py-4 ">
                             <div className="flex items-center">
                               <div className="text-sm font-medium leading-5 text-gray-900">
                                 {item.coinValue}
@@ -79,13 +79,13 @@ const ProductList = ({ data }) => {
                             </div>
                           </td>
 
-                          <td className="px-3 py-4 whitespace-no-wrap ">
+                          <td className="whitespace-no-wrap px-3 py-4 ">
                             <div className="flex items-center">
                               <div
                                 className={
                                   JSON.parse(item.status).value === "Active"
-                                    ? "rounded-full text-sm font-semibold leading-5 py-[2px] px-4 bg-green-700 text-white"
-                                    : "rounded-full text-sm font-semibold leading-5 py-[2px] px-4 bg-rose-700 text-white"
+                                    ? "rounded-full bg-green-700 px-4 py-[2px] text-sm font-semibold leading-5 text-white"
+                                    : "rounded-full bg-rose-700 px-4 py-[2px] text-sm font-semibold leading-5 text-white"
                                 }
                               >
                                 {JSON.parse(item.status).value}
@@ -93,7 +93,7 @@ const ProductList = ({ data }) => {
                             </div>
                           </td>
 
-                          <td className="px-3 py-4 whitespace-no-wrap ">
+                          <td className="whitespace-no-wrap px-3 py-4 ">
                             <div className="flex items-center">
                               <Link href={`/products/edit/${item.id}`}>
                                 <EditIcon
@@ -113,8 +113,8 @@ const ProductList = ({ data }) => {
           </div>
         </div>
       ) : (
-        <div className="flex justify-center items-center h-screen">
-          <p className="bg-rose-700 font-semibold  py-2 px-8 text-white">
+        <div className="flex h-screen items-center justify-center">
+          <p className="bg-rose-700 px-8  py-2 font-semibold text-white">
             No Products
           </p>
         </div>
