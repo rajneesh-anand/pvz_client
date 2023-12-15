@@ -1,10 +1,8 @@
 import cn from "classnames";
-import React, { useState } from "react";
-import Eye from "@assets/icons/eye-icon";
-import EyeOff from "@assets/icons/eye-off-icon";
-import IconLockDots from "@assets/icons/lockdot-icon";
+import React from "react";
+import IconMail from "@assets/icons/mail-icon";
 
-const PasswordInput = React.forwardRef(
+const EmailInput = React.forwardRef(
   (
     {
       className,
@@ -17,14 +15,12 @@ const PasswordInput = React.forwardRef(
     },
     ref
   ) => {
-    const [show, setShow] = useState(false);
-
     return (
       <>
         <div className={cn(className, "relative text-white-dark")}>
           {label && (
             <label
-              htmlFor="password"
+              htmlFor="email"
               className={cn(labelClassName, "relative text-white-dark")}
             >
               {label}
@@ -32,9 +28,9 @@ const PasswordInput = React.forwardRef(
           )}
 
           <input
-            id="password"
-            name="password"
-            type={show ? "text" : "password"}
+            id="email"
+            name="email"
+            type="email"
             ref={ref}
             className="form-input ps-10 placeholder:text-white-dark"
             placeholder={placeholder}
@@ -44,17 +40,7 @@ const PasswordInput = React.forwardRef(
             {...rest}
           />
           <span className="absolute start-4 top-1/2 -translate-y-1/2">
-            <IconLockDots fill={true} />
-          </span>
-          <span
-            className="absolute end-4 top-1/2 -translate-y-1/2 cursor-pointer"
-            onClick={() => setShow((prev) => !prev)}
-          >
-            {show ? (
-              <EyeOff className="h-6 w-6" />
-            ) : (
-              <Eye className="h-6 w-6" />
-            )}
+            <IconMail fill={true} />
           </span>
         </div>
         {error && <p className="text-[13px] text-rose-600">{error}</p>}
@@ -63,5 +49,4 @@ const PasswordInput = React.forwardRef(
   }
 );
 
-export default PasswordInput;
-PasswordInput.displayName = "PasswordInput";
+export default EmailInput;

@@ -1,32 +1,21 @@
-/* header style */
-/* 
-.header-transparent {
-  position: absolute;
-  left: 0;
-  margin: auto;
-  top: 0;
-  width: 100%;
-  z-index: 99;
-  background: transparent;
+@import "@mantine/core/styles.css" layer(mantine-core);
+
+/* 👇 Expressly import the mantine-datatable styles into mantine-datatable layer */
+@import "mantine-datatable/dist/styles.css" layer(mantine-datatable);
+
+/* 👇 Make sure the styles are applied in the correct order */
+@layer mantine-core, mantine-datatable;
+
+.mantine-Pagination-control {
+  @apply h-9 w-9 rounded-full border-white-light !bg-white-light font-nunito text-sm !text-[#3b3f5c] hover:!bg-primary hover:!text-white dark:border-[#191e3a] dark:!bg-[#191e3a] dark:!text-white;
+}
+.mantine-Pagination-control[data-active] {
+  @apply !bg-primary !text-white;
 }
 
-.header-sticky {
-  position: fixed;
-  left: 0;
-  margin: auto;
-  top: 0;
-  width: 100%;
-  box-shadow: 0 0 60px 0 rgba(255, 255, 255, 0.07);
-  z-index: 99;
-  -webkit-animation: 300ms ease-in-out 0s normal none 1 running fadeInDown;
-  animation: 300ms ease-in-out 0s normal none 1 running fadeInDown;
-  -webkit-box-shadow: 0 10px 15px rgba(255, 255, 25, 5 0.07);
-  background: #f8f6f0;
-  border-bottom: 1px solid #ff6652;
-  padding-top: 8px;
-  padding-bottom: 8px;
-} */
-
+.mantine-Pagination-control:disabled {
+  @apply !text-[#adb5bd];
+}
 /* Back To Top Button Style */
 .progress-wrap {
   position: fixed;
@@ -89,171 +78,4 @@
 }
 .drawer-left.drawer-open .drawer-content-wrapper {
   width: 320px;
-}
-
-/* footer */
-
-.footer-widget-info-text > label {
-  color: rgb(101, 98, 98);
-  font-size: 14px;
-  display: block;
-  line-height: 1.4;
-}
-
-footer-widget-info-text > a {
-  font-size: 16px;
-  font-family: "Gordita-500";
-  color: red;
-  display: inline-block;
-}
-
-.footer-widget-info-icon > i {
-  height: 48px;
-  width: 48px;
-  line-height: 48px;
-  text-align: center;
-  background: rgb(255, 255, 255);
-  color: red;
-  border-radius: 50px;
-  display: block;
-}
-.registration img {
-  height: 100%;
-  object-fit: cover;
-}
-
-.registration > div {
-  height: 100%;
-}
-
-.c-details-thumb > img {
-  width: 100%;
-  border-radius: 10px;
-}
-.c-details-thumb::before {
-  position: absolute;
-  content: "";
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  background: linear-gradient(
-    180deg,
-    rgba(5, 13, 54, 0) 0%,
-    rgba(5, 13, 54, 0.4) 100%
-  );
-}
-
-/* Swiper Carousel Custom css */
-
-.swiper-pagination {
-  position: none;
-}
-.heightFull,
-.heightFull .carouselWrapper,
-.heightFull .carouselWrapper > .swiper,
-.heightFull .carouselWrapper > .swiper > .swiper-wrapper,
-.heightFull .carouselWrapper > .swiper > .swiper-wrapper .swiper-slide > div,
-.heightFull .carouselWrapper > .swiper > .swiper-wrapper .swiper-slide > a,
-.heightFull
-  .carouselWrapper
-  > .swiper
-  > .swiper-wrapper
-  .swiper-slide
-  > a
-  > .group {
-  height: 100%;
-}
-.heightFull .carouselWrapper > .swiper > .swiper-wrapper .swiper-slide > a {
-  display: inline-flex;
-}
-
-.swiper-wrapper .swiper-slide {
-  height: auto;
-}
-.swiper .swiper-button-prev,
-.swiper .swiper-button-next {
-  display: none;
-}
-.carouselWrapper .swiper-button-disabled,
-#productGallery + div > .swiper-button-disabled {
-  cursor: not-allowed;
-  opacity: 0;
-  visibility: hidden;
-}
-.carouselWrapper .swiper-button-disabled:hover,
-#productGallery + div > .swiper-button-disabled:hover {
-  color: inherit;
-  background-color: #666;
-}
-
-.carouselWrapper .swiper .swiper-pagination-bullets .swiper-pagination-bullet {
-  width: 14px;
-  height: 8px;
-  border: 0;
-  /* background-color: #fff; */
-  border-radius: 8px;
-  transition: all 0.3s ease-in-out;
-  opacity: 0.4;
-}
-/* .carouselWrapper .swiper .swiper-pagination-bullets {
-  bottom: 20px;
- 
-} */
-.carouselWrapper
-  .swiper
-  .swiper-pagination-bullets
-  .swiper-pagination-bullet.swiper-pagination-bullet-active {
-  width: 18px;
-  opacity: 1;
-  background: #ff6652 !important;
-}
-.carouselWrapper.dotsCircleBlack
-  .swiper
-  .swiper-pagination-bullets
-  .swiper-pagination-bullet {
-  background-color: #000;
-}
-#productGalleryThumbs .swiper-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  margin: -5px;
-}
-#productGalleryThumbs .swiper-wrapper .swiper-slide {
-  margin: 5px 5px 6px;
-}
-#productGalleryThumbs .swiper-wrapper .swiper-slide.swiper-slide-thumb-active {
-  border-color: #80d8c7;
-}
-
-@media screen and (min-width: 1024px) {
-  /* .carouselWrapper .swiper .swiper-pagination-bullets {
-    bottom: 28px;
-  
-  } */
-  .carouselWrapper.dotsCircleBlack .swiper .swiper-pagination-bullets {
-    bottom: 0;
-  }
-  .carouselWrapper
-    .swiper
-    .swiper-pagination-bullets
-    .swiper-pagination-bullet {
-    width: 12px;
-    height: 8px;
-    margin-left: 5px;
-    margin-right: 5px;
-  }
-  .carouselWrapper
-    .swiper
-    .swiper-pagination-bullets
-    .swiper-pagination-bullet.swiper-pagination-bullet-active {
-    width: 18px;
-
-    background: #ff6652 !important;
-  }
-}
-
-.swiper-multirow-column > .swiper-wrapper {
-  flex-direction: row;
 }

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import dayjs from "dayjs";
 import Alert from "@components/ui/alert";
-import { Container } from "postcss";
 
 const FeedbackDetail = ({ data }) => {
   const [message, setMessage] = useState(null);
@@ -63,7 +62,7 @@ const FeedbackDetail = ({ data }) => {
       )}
       <button
         onClick={updateFeedbackStatus}
-        className="px-8 py-1.5 bg-orange font-medium text-white hover:bg-orange/70"
+        className="bg-orange-500 px-8 py-1.5 font-medium text-white hover:bg-opacity-90"
       >
         {data.status === "Published"
           ? "Un-Publish Feedback"

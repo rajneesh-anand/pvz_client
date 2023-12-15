@@ -1,7 +1,7 @@
+import "@assets/css/custom.css";
+import "@assets/css/tailwind.css";
 import "react-toastify/dist/ReactToastify.css";
 import "react-perfect-scrollbar/dist/css/styles.css";
-import "@assets/css/tailwind.css";
-import "@assets/css/elegant-font-icons.css";
 
 import { SessionProvider } from "next-auth/react";
 import { useRouter } from "next/router";

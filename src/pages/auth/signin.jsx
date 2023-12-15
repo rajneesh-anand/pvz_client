@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Alert from "@components/ui/alert";
-import Input from "@components/ui/form/input";
+import EmailInput from "@components/ui/form/email-input";
 import { useForm } from "react-hook-form";
 import { signIn, getCsrfToken, getSession } from "next-auth/react";
 import PasswordInput from "@components/ui/form/password-input";
 import { useRouter } from "next/router";
 import Seo from "@components/common/seo";
-import Container from "@components/ui/container";
 
 export default function LoginPage({ csrfToken }) {
-  const [error, setError] = useState(null);
+  const [alertType, setAlertType] = useState(null);
+  const [message, setMessage] = useState("");
   const router = useRouter();
 
   const {
@@ -27,7 +27,8 @@ export default function LoginPage({ csrfToken }) {
 
     if (result?.error) {
       console.log(result.error);
-      setError(result?.error);
+      setAlertType("error");
+      setMessage(result?.error);
     } else {
       router.push("/");
     }
@@ -40,61 +41,103 @@ export default function LoginPage({ csrfToken }) {
         description="Admin Dashboard"
         canonical="/auth/signin"
       />
-      <Container>
-        <div className="bg-light flex h-screen items-center justify-center ">
-          <div className="bg-yellow/25 m-auto w-full max-w-md rounded p-5 sm:p-8 sm:shadow ">
-            <h3 className="mb-4 mt-4 text-center text-lg font-semibold text-cyan-700">
-              Admin Sign In
-            </h3>
-            <form onSubmit={handleSubmit(onSubmit)} noValidate>
-              <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
-              <Input
-                label="Email"
-                type="email"
-                variant="outline"
-                className="mb-4"
-                placeholder="Enter your email address"
-                {...register("email", {
-                  required: "You must provide your email address !",
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                    message: "Invalid email address !",
-                  },
-                })}
-                error={errors.email?.message}
-              />
 
-              <PasswordInput
-                label="Password"
-                className="mb-4"
-                {...register("password", {
-                  required: "Password is mandatory !",
-                })}
-                error={errors.password?.message}
-              />
+      <div>
+        <div className="absolute inset-0">
+          <img
+            src="/images/hero/bg-gradient.png"
+            alt="image"
+            className="h-full w-full object-cover"
+          />
+        </div>
 
-              <div className="relative">
-                <button
-                  type="submit"
-                  className="whitespace-no-wrap inline-flex w-full items-center  justify-center rounded-sm bg-orange-500 px-4 py-2 font-medium leading-6 text-white text-white shadow-sm hover:bg-opacity-90 focus:outline-none"
+        <div className="relative flex min-h-screen items-center justify-center bg-[url(/images/hero/map.png)] bg-cover bg-center bg-no-repeat px-6 py-10 dark:bg-[#060818] sm:px-16">
+          <img
+            src="/images/hero/coming-soon-object1.png"
+            alt="image"
+            className="absolute left-0 top-1/2 h-full max-h-[893px] -translate-y-1/2"
+          />
+          <img
+            src="/images/hero/coming-soon-object2.png"
+            alt="image"
+            className="absolute left-24 top-0 h-40 md:left-[30%]"
+          />
+          <img
+            src="/images/hero/coming-soon-object3.png"
+            alt="image"
+            className="absolute right-0 top-0 h-[300px]"
+          />
+          <img
+            src="/images/hero/polygon-object.svg"
+            alt="image"
+            className="absolute bottom-0 end-[28%]"
+          />
+          <div className="relative w-full max-w-[870px] rounded-md bg-[linear-gradient(45deg,#fff9f9_0%,rgba(255,255,255,0)_25%,rgba(255,255,255,0)_75%,_#fff9f9_100%)] p-2 dark:bg-[linear-gradient(52.22deg,#0E1726_0%,rgba(14,23,38,0)_18.66%,rgba(14,23,38,0)_51.04%,rgba(14,23,38,0)_80.07%,#0E1726_100%)]">
+            <div className="relative flex flex-col justify-center rounded-md bg-white/60 px-6 py-20 backdrop-blur-lg dark:bg-black/50 lg:min-h-[480px]">
+              <div className="mx-auto w-full max-w-[440px]">
+                <div className="mb-10">
+                  <h1 className="text-3xl font-extrabold uppercase !leading-snug text-primary md:text-4xl">
+                    Admin Sign In
+                  </h1>
+                  <p className="text-base font-bold leading-normal text-white-dark">
+                    Sign In using administrator login credentials
+                  </p>
+                </div>
+
+                <form
+                  onSubmit={handleSubmit(onSubmit)}
+                  className="space-y-5"
+                  noValidate
                 >
-                  Sign In
-                </button>
-              </div>
+                  <input
+                    name="csrfToken"
+                    type="hidden"
+                    defaultValue={csrfToken}
+                  />
 
-              {error && (
-                <Alert
-                  message={error}
-                  variant="error"
-                  closeable={true}
-                  className="mt-5"
-                  onClose={() => setError(null)}
-                />
-              )}
-            </form>
+                  <EmailInput
+                    className="mt-2"
+                    placeholder="Email"
+                    {...register("email", {
+                      required: "Email address is required !",
+                      pattern: {
+                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                        message: "Invalid email address format !",
+                      },
+                    })}
+                    error={errors.email?.message}
+                  />
+
+                  <PasswordInput
+                    className="mb-4"
+                    placeholder="Password"
+                    {...register("password", {
+                      required: "Password is required !",
+                    })}
+                    error={errors.password?.message}
+                  />
+
+                  <button
+                    type="submit"
+                    className="btn btn-gradient !mt-6 w-full border-0 uppercase shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)]"
+                  >
+                    Sign In
+                  </button>
+                </form>
+                {alertType && (
+                  <Alert
+                    message={message}
+                    variant={alertType}
+                    closeable={true}
+                    className="mt-5"
+                    onClose={() => setMessage(null)}
+                  />
+                )}
+              </div>
+            </div>
           </div>
         </div>
-      </Container>
+      </div>
     </>
   );
 }

@@ -3,6 +3,7 @@ import Sidebar from "@components/layout/sidebar";
 import { useUI } from "@contexts/ui.context";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { MantineProvider } from "@mantine/core";
 
 const Layout = ({ children }) => {
   const { sidebar, navbar, animate, toggleSidebar } = useUI();
@@ -160,7 +161,9 @@ const Layout = ({ children }) => {
             <Header />
 
             <div className={`${animation} animate__animated p-6`}>
-              {children}
+              <MantineProvider defaultColorScheme="auto">
+                {children}
+              </MantineProvider>
             </div>
 
             {/* <Footer /> */}

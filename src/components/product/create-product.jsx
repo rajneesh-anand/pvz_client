@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { productStatusOptions, productCategoryOptions } from "@data/constant";
 
 export default function AddProductForm() {
-  const [error, setError] = useState(null);
+  const [alertType, setAlertType] = useState(null);
   const [message, setMessage] = useState("");
   const [productImage, setProductImage] = useState(null);
   const [status, setStatus] = useState(productStatusOptions[0]);
@@ -50,12 +50,12 @@ export default function AddProductForm() {
       if (res.status >= 400 && res.status < 600) {
         throw new Error(result.message);
       } else {
-        setMessage("success");
-        setError("Product Addedd !");
+        setAlertType("success");
+        setMessage("Product Addedd !");
       }
     } catch (error) {
-      setMessage("error");
-      setError(error.message);
+      setAlertType("error");
+      setMessage(error.message);
       console.log(error.message);
     }
   }
@@ -209,13 +209,13 @@ export default function AddProductForm() {
           </button>
         </div>
       </form>
-      {error && (
+      {alertType && (
         <Alert
-          message={error}
-          variant={message}
+          message={message}
+          variant={alertType}
           closeable={true}
           className="mt-5"
-          onClose={() => setError(null)}
+          onClose={() => setMessage(null)}
         />
       )}
     </div>

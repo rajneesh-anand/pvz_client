@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
+import { ColorSchemeScript } from "@mantine/core";
 
 import { GA_TRACKING_ID } from "@utils/ga";
 
@@ -91,6 +92,7 @@ export default class CustomDocument extends Document {
           `,
             }}
           />
+          <ColorSchemeScript defaultColorScheme="auto" />
         </Head>
         <body>
           <Main />

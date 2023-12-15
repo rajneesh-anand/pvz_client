@@ -1,6 +1,3 @@
-import PhoneIcon from "@assets/icons/phone";
-import UserIcon from "@assets/icons/user-icon";
-import CaretDown from "@assets/icons/caret-down";
 import IconMenuUsers from "@assets/icons/menu-users";
 import IconMenuChat from "@assets/icons/menu-chat";
 import IconDollar from "@assets/icons/dollar-icon";
@@ -13,7 +10,7 @@ export const sidebarNavItems = [
   {
     title: "Users",
     href: "/",
-    icon: <IconMenuUsers className="shrink-0 group-hover:!text-primary" />,
+    icon: <IconMenuUsers className="shrink-0 group-hover:!text-blue-400" />,
   },
   {
     title: "Gifts",
@@ -100,6 +97,25 @@ export const productStatusOptions = [
 ];
 
 export const productCategoryOptions = [
+  {
+    label: "All",
+    value: "All",
+  },
+  {
+    label: "Toys",
+    value: "Toys",
+  },
+  {
+    label: "Beauty & Fashion",
+    value: "Beauty & Fashion",
+  },
+  {
+    label: "Electronics & Electrical",
+    value: "Electronics & Electrical",
+  },
+];
+
+export const productSubCategoryOptions = [
   {
     label: "All",
     value: "All",

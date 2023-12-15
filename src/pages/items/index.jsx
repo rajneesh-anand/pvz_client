@@ -3,12 +3,14 @@ import axios from "axios";
 import ItemList from "@components/item/item-list";
 import { getSession } from "next-auth/react";
 import Seo from "@components/common/seo";
+import ItemListTwo from "@components/item/item-list-two";
 
 export default function ItemListPage({ itemList }) {
   return (
     <>
       <Seo title="Items" description="Items List" canonical="/items" />
-      <ItemList data={itemList} />
+      {/* <ItemList data={itemList} /> */}
+      <ItemListTwo />
     </>
   );
 }

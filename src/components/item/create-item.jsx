@@ -1,23 +1,32 @@
-import React, { useState } from "react";
-import slugify from "slugify";
+import Image from "next/image";
+import { useCallback, useEffect, useState } from "react";
+import Dropzone, { useDropzone } from "react-dropzone";
 import UploadIcon from "@assets/icons/upload-icon";
-import Dropzone from "react-dropzone";
+import CloseButton from "@components/ui/close-button";
 import Alert from "@components/ui/alert";
 import Input from "@components/ui/form/input";
 import Select from "@components/ui/form/select/select";
+import slugify from "slugify";
 import { useForm } from "react-hook-form";
+import Editor from "@components/common/ckeditor";
 import {
   productStatusOptions,
   productCategoryOptions,
+  productSubCategoryOptions,
   marketPlaceOptions,
 } from "@data/constant";
 
 export default function AddItemForm() {
-  const [error, setError] = useState(null);
+  const [editorLoaded, setEditorLoaded] = useState(false);
+  const [content, setContent] = useState("");
+  const [files, setFiles] = useState([]);
+  const [rejected, setRejected] = useState([]);
+  const [alertType, setAlertType] = useState(null);
   const [message, setMessage] = useState("");
   const [productImage, setProductImage] = useState(null);
   const [status, setStatus] = useState(productStatusOptions[0]);
   const [category, setCategory] = useState(productCategoryOptions[0]);
+  const [subCategory, setSubCategory] = useState(productSubCategoryOptions[0]);
   const [marketPlace, setMarketPlace] = useState(marketPlaceOptions[0]);
 
   const {
@@ -26,18 +35,77 @@ export default function AddItemForm() {
     formState: { errors },
   } = useForm();
 
-  async function onSubmit({ name, link, price, sprice, stock }) {
+  const onDrop = useCallback((acceptedFiles, rejectedFiles) => {
+    if (acceptedFiles?.length) {
+      setFiles((previousFiles) => [
+        ...previousFiles,
+        ...acceptedFiles.map((file) =>
+          Object.assign(file, { preview: URL.createObjectURL(file) })
+        ),
+      ]);
+    }
+
+    if (rejectedFiles?.length) {
+      setRejected((previousFiles) => [...previousFiles, ...rejectedFiles]);
+    }
+  }, []);
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    accept: {
+      "image/*": [],
+    },
+    maxSize: 1024 * 1000,
+    onDrop,
+  });
+
+  useEffect(() => {
+    setEditorLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    // Revoke the data uris to avoid memory leaks
+    return () => files.forEach((file) => URL.revokeObjectURL(file.preview));
+  }, [files]);
+
+  const removeFile = (name) => {
+    setFiles((files) => files.filter((file) => file.name !== name));
+  };
+
+  const removeAll = () => {
+    setFiles([]);
+    setRejected([]);
+  };
+
+  const removeRejected = (name) => {
+    setRejected((files) => files.filter(({ file }) => file.name !== name));
+  };
+
+  async function onSubmit({ name, description, link, price, sprice, stock }) {
     try {
       const formData = new FormData();
       formData.append("image", productImage);
       formData.append("name", name);
+      formData.append("description", description);
       formData.append("link", link);
       formData.append("price", price);
       formData.append("salePrice", sprice);
       formData.append("status", JSON.stringify(status));
       formData.append("category", JSON.stringify(category));
+      formData.append("subCategory", JSON.stringify(subCategory));
       formData.append("marketPlace", JSON.stringify(marketPlace));
+      formData.append("content", content);
       formData.append("inStock", stock);
+      files.length > 0
+      ? files.forEach((file) => formData.append("gallery", file))
+      : formData.append("gallery", null);
+      formData.append(
+        "slug",
+        slugify(name, {
+          remove: /[*+~.()'"!:@&$#%,]/g,
+          lower: true,
+        })
+      );
+    
 
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_NODE_API_SERVER}/item/create`,
@@ -50,12 +118,12 @@ export default function AddItemForm() {
       if (res.status >= 400 && res.status < 600) {
         throw new Error(result.message);
       } else {
-        setMessage("success");
-        setError("Product Addedd !");
+        setAlertType("success");
+        setMessage("Product Addedd !");
       }
     } catch (error) {
-      setMessage("error");
-      setError(error.message);
+      setAlertType("error");
+      setMessage(error.message);
       console.log(error.message);
     }
   }
@@ -106,6 +174,65 @@ export default function AddItemForm() {
             </div>
           </div>
         </div>
+
+        <div className="mb-2 flex flex-col items-center justify-between md:flex-row">
+          <p className="w-full px-0 pb-2 font-semibold text-slate-700 sm:pr-4 md:w-1/3  md:pr-5">
+            Image Gallery
+          </p>
+          <div className="flex w-full md:w-2/3 ">
+            <div
+              {...getRootProps({
+                className:
+                  "border-dashed border-2 border-border-base w-full py-4 px-4 rounded flex flex-col justify-center items-center cursor-pointer focus:border-accent-400 focus:outline-none",
+              })}
+            >
+              <input {...getInputProps()} />
+              <div className="flex flex-col items-center justify-center gap-4">
+                <UploadIcon className="text-slate-400" color="#7f7777" />
+                {isDragActive ? (
+                  <p>Drop the files here ...</p>
+                ) : (
+                  <p>Drag & drop files here, or click to select files</p>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mb-2 flex flex-col items-center justify-between md:flex-row">
+          <p className="w-full px-0 pb-2 text-[10px] font-medium italic text-blue-700 sm:pr-4 md:w-1/3  md:pr-5">
+            Gallery Image Preview
+          </p>
+          <div className=" flex w-full justify-center md:w-2/3 ">
+            <ul className="mt-2 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+              {files.map((file) => (
+                <li
+                  key={file.name}
+                  className="relative h-32 rounded-md shadow-lg"
+                >
+                  <Image
+                    src={file.preview}
+                    alt={file.name}
+                    width={100}
+                    height={100}
+                    onLoad={() => {
+                      URL.revokeObjectURL(file.preview);
+                    }}
+                    className="relative h-full w-full rounded-md object-contain"
+                  />
+                  <CloseButton
+                    onClick={() => removeFile(file.name)}
+                    color="#FF0000"
+                  />
+                  {/* <p className="mt-2 text-[12px] font-medium text-neutral-500">
+                    {file.name}
+                  </p> */}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
         <div className="mb-2 flex flex-col items-center justify-between md:flex-row">
           <p className="w-full px-0 pb-2 font-semibold text-slate-700 sm:pr-4 md:w-1/3  md:pr-5">
             Item Name
@@ -121,6 +248,23 @@ export default function AddItemForm() {
             error={errors.name?.message}
           />
         </div>
+
+        <div className="mb-2 flex flex-col items-center justify-between md:flex-row">
+          <p className="w-full px-0 pb-2 font-semibold text-slate-700 sm:pr-4 md:w-1/3  md:pr-5">
+            Item Description
+          </p>
+          <Input
+            type="text"
+            variant="outline"
+            className="w-full md:w-2/3"
+            placeholder="Item Description"
+            {...register("description", {
+              required: "item description is required !",
+            })}
+            error={errors.description?.message}
+          />
+        </div>
+
         <div className="mb-2 flex flex-col items-center justify-between md:flex-row">
           <p className="w-full px-0 pb-2 font-semibold text-slate-700 sm:pr-4 md:w-1/3  md:pr-5">
             Item Link
@@ -129,7 +273,7 @@ export default function AddItemForm() {
             type="text"
             variant="outline"
             className="w-full md:w-2/3"
-            placeholder="Product Description"
+            placeholder="Item Link"
             {...register("link", {
               required: "item link is required !",
             })}
@@ -164,9 +308,9 @@ export default function AddItemForm() {
             type="text"
             variant="outline"
             className="w-full md:w-2/3"
-            placeholder="Item Price"
+            placeholder="Item Sale Price"
             {...register("sprice", {
-              required: "item  sale price is required !",
+              required: "item sale price is required !",
               pattern: {
                 value: /^\d+$/,
                 message: "Invalid Input",
@@ -220,6 +364,21 @@ export default function AddItemForm() {
             onChange={(value) => setCategory(value)}
           />
         </div>
+
+        <div className="mb-2 flex flex-col items-center justify-between md:flex-row">
+          <p className="w-full px-0 pb-2 font-semibold text-slate-700 sm:pr-4 md:w-1/3 md:pr-5">
+            Item Sub-Category
+          </p>
+          <Select
+            className=" w-full md:w-2/3"
+            defaultValue={subCategory}
+            options={productSubCategoryOptions}
+            isSearchable={false}
+            onChange={(value) => setSubCategory(value)}
+            isMulti={true}
+          />
+        </div>
+
         <div className="mb-2 flex flex-col items-center justify-between md:flex-row">
           <p className="w-full px-0 pb-2 font-semibold text-slate-700 sm:pr-4 md:w-1/3 md:pr-5">
             Item Status
@@ -233,6 +392,21 @@ export default function AddItemForm() {
           />
         </div>
 
+        <div className="mb-2 flex flex-col items-center justify-between md:flex-row">
+          <p className="w-full px-0 pb-2 font-semibold text-slate-700 sm:pr-4 md:w-1/3 md:pr-5">
+            Item Detailed Description
+          </p>
+          <div className=" w-full md:w-2/3">
+            <Editor
+              name="content"
+              onChange={(data) => {
+                setContent(data);
+              }}
+              editorLoaded={editorLoaded}
+            />
+          </div>
+        </div>
+
         <div className="relative text-center lg:text-end">
           <button
             type="submit"
@@ -242,13 +416,13 @@ export default function AddItemForm() {
           </button>
         </div>
       </form>
-      {error && (
+      {alertType && (
         <Alert
-          message={error}
-          variant={message}
+          message={message}
+          variant={alertType}
           closeable={true}
-          className="my-5"
-          onClose={() => setError(null)}
+          className="mt-5"
+          onClose={() => setMessage(null)}
         />
       )}
     </div>
