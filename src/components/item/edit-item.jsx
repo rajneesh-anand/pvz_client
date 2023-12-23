@@ -17,6 +17,7 @@ import {
 } from "@data/constant";
 
 export default function EditItemForm({ data }) {
+  console.log(data.subCategory);
   const [editorLoaded, setEditorLoaded] = useState(false);
   const [content, setContent] = useState(data.content);
   const [files, setFiles] = useState([]);
@@ -25,10 +26,24 @@ export default function EditItemForm({ data }) {
   const [message, setMessage] = useState("");
   const [productImage, setProductImage] = useState(null);
   const [imageGallery, setImagegallery] = useState(data.gallery);
-  const [status, setStatus] = useState(JSON.parse(data.status));
-  const [category, setCategory] = useState(JSON.parse(data.category));
-  const [subCategory, setSubCategory] = useState(JSON.parse(data.subCategory));
-  const [marketPlace, setMarketPlace] = useState(JSON.parse(data.marketPlace));
+  const [status, setStatus] = useState({
+    label: data.status,
+    value: data.status,
+  });
+  const [category, setCategory] = useState({
+    label: data.category,
+    value: data.category,
+  });
+  const [subCategory, setSubCategory] = useState(
+    data.subCategory.reduce((acc, currentValue) => {
+      acc.push({ label: currentValue, value: currentValue });
+      return acc;
+    }, [])
+  );
+  const [marketPlace, setMarketPlace] = useState({
+    label: data.marketPlace,
+    value: data.marketPlace,
+  });
 
   const {
     register,
@@ -89,6 +104,7 @@ export default function EditItemForm({ data }) {
 
   async function onSubmit({ name, description, link, price, sprice, stock }) {
     try {
+      const subCat = subCategory.map((item) => item.label);
       const formData = new FormData();
       formData.append("image", productImage);
       formData.append("name", name);
@@ -96,10 +112,10 @@ export default function EditItemForm({ data }) {
       formData.append("link", link);
       formData.append("price", price);
       formData.append("salePrice", sprice);
-      formData.append("status", JSON.stringify(status));
-      formData.append("category", JSON.stringify(category));
-      formData.append("subCategory", JSON.stringify(subCategory));
-      formData.append("marketPlace", JSON.stringify(marketPlace));
+      formData.append("status", status.label);
+      formData.append("category", category.label);
+      formData.append("subCategory", JSON.stringify(subCat));
+      formData.append("marketPlace", marketPlace.label);
       formData.append("content", content);
       formData.append("inStock", stock);
       formData.append("imageGalley", JSON.stringify(imageGallery));

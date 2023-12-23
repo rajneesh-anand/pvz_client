@@ -81,7 +81,14 @@ export default function AddItemForm() {
   };
 
   async function onSubmit({ name, description, link, price, sprice, stock }) {
+    console.log(subCategory);
+    if (subCategory.length == 0) {
+      setAlertType("error");
+      setMessage("Select Item Sub-Category !");
+      return;
+    }
     try {
+      const subCat = subCategory.map((item) => item.label);
       const formData = new FormData();
       formData.append("image", productImage);
       formData.append("name", name);
@@ -89,15 +96,16 @@ export default function AddItemForm() {
       formData.append("link", link);
       formData.append("price", price);
       formData.append("salePrice", sprice);
-      formData.append("status", JSON.stringify(status));
-      formData.append("category", JSON.stringify(category));
-      formData.append("subCategory", JSON.stringify(subCategory));
-      formData.append("marketPlace", JSON.stringify(marketPlace));
+      formData.append("status", status.label);
+      formData.append("category", category.label);
+      formData.append("subCategory", JSON.stringify(subCat));
+      formData.append("marketPlace", marketPlace.label);
       formData.append("content", content);
       formData.append("inStock", stock);
+
       files.length > 0
-      ? files.forEach((file) => formData.append("gallery", file))
-      : formData.append("gallery", null);
+        ? files.forEach((file) => formData.append("gallery", file))
+        : formData.append("gallery", null);
       formData.append(
         "slug",
         slugify(name, {
@@ -105,7 +113,6 @@ export default function AddItemForm() {
           lower: true,
         })
       );
-    
 
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_NODE_API_SERVER}/item/create`,

@@ -100,7 +100,7 @@ export default function ItemListTwo() {
               render: (item) => (
                 <div className="flex items-center">
                   <div className="text-sm font-medium leading-5 text-gray-900 ">
-                    {JSON.parse(item.marketPlace).value}
+                    {item.marketPlace}
                   </div>
                 </div>
               ),
@@ -126,6 +126,25 @@ export default function ItemListTwo() {
                 <div className="flex items-center">
                   <div className="text-sm font-medium leading-5 text-gray-900 ">
                     {item.salePrice}
+                  </div>
+                </div>
+              ),
+            },
+
+            {
+              accessor: "status",
+              title: "Status",
+              sortable: false,
+              render: (item) => (
+                <div className="flex items-center">
+                  <div
+                    className={
+                      item.status === "Active"
+                        ? "rounded-full bg-green-700 px-4 py-[2px] text-sm font-semibold leading-5 text-white"
+                        : "rounded-full bg-rose-700 px-4 py-[2px] text-sm font-semibold leading-5 text-white"
+                    }
+                  >
+                    {item.status}
                   </div>
                 </div>
               ),
@@ -161,9 +180,9 @@ export default function ItemListTwo() {
           sortStatus={sortStatus}
           onSortStatusChange={setSortStatus}
           minHeight={200}
-          // paginationText={({ from, to, totalRecords }) =>
-          //   `Showing  ${from} to ${to} of ${totalRecords} entries`
-          // }
+          paginationText={({ from, to, totalRecords }) =>
+            `Showing  ${from} to ${to} of ${totalRecords} entries`
+          }
           paginationActiveBackgroundColor="#40c057"
         />
       )}
